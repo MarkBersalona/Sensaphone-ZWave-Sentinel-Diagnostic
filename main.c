@@ -481,8 +481,8 @@ main_parse_msg(char *paucReceiveMsg)
         }
     }
     
-    // Look for "Sensaphone 400 starting..."
-    plcDetected = strstr((char*)paucReceiveMsg, "Sensaphone 400 starting...");
+    // Look for "ZWave Sentinel starting..."
+    plcDetected = strstr((char*)paucReceiveMsg, "ZWave Sentinel starting...");
     if (plcDetected)
     {
         // This is a new UUT or the old UUT restarting
