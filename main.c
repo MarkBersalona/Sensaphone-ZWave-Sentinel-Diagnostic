@@ -35,7 +35,7 @@
 //
 ///////////////////////////////////////////////////////////////////////////////
 
-#define GLADE_LAYOUT ("400CellularDiagnostic.glade")
+#define GLADE_LAYOUT ("ZWaveSentinelDiagnostic.glade")
 
 
 
