@@ -2,7 +2,7 @@
  * File:   gconfig.h
  * Author: Mark Bersalona
  *
- * Created on 2023.01.16
+ * Created on 2026.09.27
  */
 
 #ifndef GCONFIG_H
@@ -23,7 +23,7 @@ extern "C" {
 #define VERSION_A     "0"
 #define VERSION_B     "4"
 #define VERSION_C     "31"
-#define VERSION_DATE  "2024.01.10"
+#define VERSION_DATE  "2026.09.27"
     
 // Period of the periodic callback
 #define MAIN_PERIODIC_INTERVAL_MSEC (250)
