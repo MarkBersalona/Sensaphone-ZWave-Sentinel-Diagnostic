@@ -3,7 +3,7 @@
  * Author: Mark Bersalona
  *
  * Created on 2023.01.16
- * Main file for Sensaphone 400 Cellular Diagnostic
+ * Main file for Sensaphone ZWave Sentinel Diagnostic
  */
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -206,7 +206,7 @@ char* trim(char* paucInputString)
 ////////////////////////////////////////////////////////////////////////////
 // Name:         main_ATCommand_clicked
 // Description:  Callback routine - ATCommand button clicked
-//               Send the user-entered AT command to the SARA-R5 on the 400 Cellular
+//               Send the user-entered AT command to the SARA-R5 on the ZWave Sentinel
 // Parameters:   the contents of the AT Command text entry
 // Return:       None
 ////////////////////////////////////////////////////////////////////////////
@@ -226,7 +226,7 @@ void main_ATCommand_clicked(void)
         memset(lcATCommand, 0, sizeof(lcATCommand));
         memcpy(lcATCommand, gtk_entry_get_text(GTK_ENTRY(txtentATCommand)), luiATCommandLength);
 
-        // Send the formatted AT Command to the 400 Cellular
+        // Send the formatted AT Command to the ZWave Sentinel
         //sprintf(lcTempMainString, "AT Command = >>%s<<\r\n", lcATCommand);
         //display_status_write(lcTempMainString);
         sprintf(lcTempMainString, "+++COMMAND:%s", lcATCommand);
@@ -243,7 +243,7 @@ void main_ATCommand_clicked(void)
 ////////////////////////////////////////////////////////////////////////////
 // Name:         main_BOARDREV_clicked
 // Description:  Callback routine - BoardRev button clicked
-//               Send the user-entered Board rev to the 400 Cellular
+//               Send the user-entered Board rev to the ZWave Sentinel
 // Parameters:   the contents of the Board rev text entry
 // Return:       None
 ////////////////////////////////////////////////////////////////////////////
@@ -263,7 +263,7 @@ void main_BOARDREV_clicked(void)
         memset(lcBoardRev, 0, sizeof(lcBoardRev));
         memcpy(lcBoardRev, trim((char*)gtk_entry_get_text(GTK_ENTRY(txtentNewBoardRev))), 1);
 
-        // Send the formatted Board rev Menu to the 400 Cellular
+        // Send the formatted Board rev Menu to the ZWave Sentinel
         if (isalpha(lcBoardRev[0]))
         {
             //sprintf(lcTempMainString, "New Board rev = >>%s<<\r\n", lcBoardRev);
@@ -297,7 +297,7 @@ void main_LOGENABLE_state_set(void)
     {
         // Logfile has just been enabled, build timestamp filename and open file
         memset(lcLogfileName, 0, sizeof(lcLogfileName));
-        sprintf(lcLogfileName, "%s 400 Cellular.txt", g_date_time_format(gDateTime, "%Y%m%d %H%M"));
+        sprintf(lcLogfileName, "%s ZWave Sentinel.txt", g_date_time_format(gDateTime, "%Y%m%d %H%M"));
         sprintf(lcTempMainString, "Logfile %s opened\r\n", lcLogfileName);
         display_status_write(lcTempMainString);
         gtk_label_set_text(GTK_LABEL(lblLogfile), lcLogfileName);
@@ -307,7 +307,7 @@ void main_LOGENABLE_state_set(void)
 
         // Write intro text to logfile
         memset(lcTempMainString, 0, sizeof(lcTempMainString));
-        sprintf(lcTempMainString, "---------- Sensaphone 400 Cellular logfile, opened %s local time -----------", 
+        sprintf(lcTempMainString, "---------- Sensaphone ZWave Sentinel logfile, opened %s local time -----------", 
                                                           g_date_time_format(gDateTime, "%Y.%m.%d %H:%M") );
         main_logfile_write(lcTempMainString);
 
@@ -331,7 +331,7 @@ void main_LOGENABLE_state_set(void)
 ////////////////////////////////////////////////////////////////////////////
 // Name:         main_MAC_clicked
 // Description:  Callback routine - MAC button clicked
-//               Send the user-entered MAC to the 400 Cellular
+//               Send the user-entered MAC to the ZWave Sentinel
 // Parameters:   the contents of the MAC text entry
 // Return:       None
 ////////////////////////////////////////////////////////////////////////////
@@ -351,7 +351,7 @@ void main_MAC_clicked(void)
         memset(lcMACAddress, 0, sizeof(lcMACAddress));
         memcpy(lcMACAddress, trim((char*)gtk_entry_get_text(GTK_ENTRY(txtentNewMAC))), luiMACAddressLength);
 
-        // Send the formatted MAC Menu to the 400 Cellular
+        // Send the formatted MAC Menu to the ZWave Sentinel
         if (is_valid_mac(lcMACAddress))
         {
             //sprintf(lcTempMainString, "New MAC address = >>%s<<\r\n", lcMACAddress);
@@ -395,7 +395,7 @@ void main_MENU_clicked(void)
                                                     pucMenuItems[liMenuItemSelected]);
         display_status_write(lcTempMainString);
 
-        // Send the formatted menu command to the 400 Cellular
+        // Send the formatted menu command to the ZWave Sentinel
         sprintf(lcTempMainString, "+++MENU:%s", pucMenuCMD[liMenuItemSelected]);
         serial_write(lcTempMainString);
     }
@@ -411,7 +411,7 @@ void main_MENU_clicked(void)
 void main_REBOOT_clicked(void)
 {
     //display_status_write("REBOOT button pressed\r\n");
-    // Send the formatted menu command to the 400 Cellular
+    // Send the formatted menu command to the ZWave Sentinel
     sprintf(lcTempMainString, "+++MENU:Z");
     serial_write(lcTempMainString);
 
@@ -429,7 +429,7 @@ void main_REBOOT_clicked(void)
 void main_RTD_clicked(void)
 {
     //display_status_write("RESET to Defaults button pressed\r\n");
-    // Send the formatted menu command to the 400 Cellular
+    // Send the formatted menu command to the ZWave Sentinel
     sprintf(lcTempMainString, "+++MENU:X");
     serial_write(lcTempMainString);
 
@@ -641,14 +641,14 @@ main_parse_msg(char *paucReceiveMsg)
         }
     }
     
-    // Look for "400 Cellular firmware version is "
-    plcDetected = strstr((char*)paucReceiveMsg, "400 Cellular firmware version is ");
+    // Look for "ZWave Sentinel firmware version is "
+    plcDetected = strstr((char*)paucReceiveMsg, "ZWave Sentinel firmware version is ");
     if (plcDetected)
     {
-        // Write the 400 Cellular FW version to Status and to the 400 FW label
+        // Write the ZWave Sentinel FW version to Status and to the 400 FW label
         memset (lcTempMainString, 0, sizeof(lcTempMainString));
         memcpy (lcTempMainString, plcDetected+33, strlen(plcDetected+33));
-        display_status_write("Detected 400 Cellular firmware version: ");
+        display_status_write("Detected ZWave Sentinel firmware version: ");
         display_status_write(lcTempMainString);
         display_status_write("\r\n");
         gtk_label_set_text(GTK_LABEL(lbl400FW), lcTempMainString);
@@ -658,7 +658,7 @@ main_parse_msg(char *paucReceiveMsg)
     plcDetected = strstr((char*)paucReceiveMsg, "Network_Online_StateMachine: Transitioning from ");
     if (plcDetected)
     {
-        // Write the 400 Cellular's network online state transition to Status
+        // Write the ZWave Sentinel's network online state transition to Status
         display_status_write(paucReceiveMsg);
         display_status_write("\r\n");
 
@@ -698,9 +698,9 @@ main_parse_msg(char *paucReceiveMsg)
     plcDetected = strstr((char*)paucReceiveMsg, "+++ Start DIAGNOSTIC MODE +++");
     if (plcDetected)
     {
-        // Diagnostic mode is enabled on the 400 Cellular
+        // Diagnostic mode is enabled on the ZWave Sentinel
         // Send a sacrificial dummy string to "initialize" serial_write()
-        // and 400 Cellular Diagnostic receive
+        // and ZWave Sentinel Diagnostic receive
         serial_write("+++");
     }
     
@@ -708,10 +708,10 @@ main_parse_msg(char *paucReceiveMsg)
     plcDetected = strstr((char*)paucReceiveMsg, "Periodic battery status: Main power ");
     if (plcDetected)
     {
-        // Write the 400 Cellular Power status to the Power Value label
+        // Write the ZWave Sentinel Power status to the Power Value label
         memset (lcTempMainString, 0, sizeof(lcTempMainString));
         memcpy (lcTempMainString, plcDetected+36, strlen(trim(plcDetected+36)));
-        //display_status_write("Detected 400 Cellular power status: ");
+        //display_status_write("Detected ZWave Sentinel power status: ");
         //display_status_write(lcTempMainString);
         //display_status_write("\r\n");
         gtk_label_set_text(GTK_LABEL(lblValuePower), lcTempMainString);
@@ -724,7 +724,7 @@ main_parse_msg(char *paucReceiveMsg)
         plcPercentage = strstr((char*)plcDetected, "Percentage = ");
         if (plcPercentage)
         {
-            // Write the 400 Cellular Battery percentage to the Battery Value label
+            // Write the ZWave Sentinel Battery percentage to the Battery Value label
             memset (lcTempMainString, 0, sizeof(lcTempMainString));
             memcpy (lcTempMainString, plcPercentage+13, strlen(trim(plcPercentage+13)));
             gtk_label_set_text(GTK_LABEL(lblValueBattery), lcTempMainString);
@@ -738,7 +738,7 @@ main_parse_msg(char *paucReceiveMsg)
         plcPercentage = strstr((char*)plcDetected, "Percentage = ");
         if (plcPercentage)
         {
-            // Write the 400 Cellular Lithium percentage to the Lithium Value label
+            // Write the ZWave Sentinel Lithium percentage to the Lithium Value label
             memset (lcTempMainString, 0, sizeof(lcTempMainString));
             memcpy (lcTempMainString, plcPercentage+13, strlen(trim(plcPercentage+13)));
             gtk_label_set_text(GTK_LABEL(lblValueLithium), lcTempMainString);
@@ -1602,7 +1602,7 @@ main_periodic(gpointer data)
 
 ////////////////////////////////////////////////////////////////////////////
 // Name:         main
-// Description:  Main routine for 400 Cellular Diagnostic
+// Description:  Main routine for ZWave Sentinel Diagnostic
 // Parameters:   Standard main arguments, unused
 // Return:       0 on conventional exit; error otherwise
 ////////////////////////////////////////////////////////////////////////////
@@ -1667,7 +1667,7 @@ int main(int argc, char** argv)
     g_timeout_add(MAIN_PERIODIC_INTERVAL_MSEC, main_periodic, NULL);
 
     display_status_write("=================================<=>=================================\r\n");
-    display_status_write("                 Sensaphone 400 Cellular Diagnostic                  \r\n");
+    display_status_write("                 Sensaphone ZWave Sentinel Diagnostic                  \r\n");
     sprintf(lcTempMainString, "                               v%s.%s.%s \r\n", VERSION_A,VERSION_B,VERSION_C);
     display_status_write(lcTempMainString);
     sprintf(lcTempMainString, "                             %s     \r\n", VERSION_DATE);
