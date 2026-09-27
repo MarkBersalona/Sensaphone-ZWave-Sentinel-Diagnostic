@@ -39,9 +39,9 @@ GtkWidget *lblTransceiver, *lblTransceiverFW, *lblICCID, *lblIMEI;
 GtkWidget *lblRTCTitle, *lblConnectionTitle;
 GtkWidget *lblRTC, *lblConnection;
 
-GtkWidget *lblNewMACTitle, *lblNewBoardRevTitle, *lblATCommandTitle;
-GtkWidget *txtentNewMAC, *txtentNewBoardRev, *txtentATCommand;
-GtkWidget *btnNewMAC, *btnNewBoardRev, *btnATCommand;
+GtkWidget *lblNewMACTitle, *lblNewBoardRevTitle;
+GtkWidget *txtentNewMAC, *txtentNewBoardRev;
+GtkWidget *btnNewMAC, *btnNewBoardRev;
 GtkWidget *cbtMenu, *btnMenu;
 GtkWidget *btnRTD, *btnReboot;
 
@@ -194,9 +194,6 @@ display_main_initialize(void)
     lblNewBoardRevTitle = GTK_WIDGET(gtk_builder_get_object(builder, "lblNewBoardRevTitle"));
     txtentNewBoardRev   = GTK_WIDGET(gtk_builder_get_object(builder, "txtentNewBoardRev"));
     btnNewBoardRev      = GTK_WIDGET(gtk_builder_get_object(builder, "btnNewBoardRev"));
-    lblATCommandTitle   = GTK_WIDGET(gtk_builder_get_object(builder, "lblATCommandTitle"));
-    txtentATCommand     = GTK_WIDGET(gtk_builder_get_object(builder, "txtentATCommand"));
-    btnATCommand        = GTK_WIDGET(gtk_builder_get_object(builder, "btnATCommand"));
 
     lblRSSITitle          = GTK_WIDGET(gtk_builder_get_object(builder, "lblRSSITitle"));
     lblRSSI               = GTK_WIDGET(gtk_builder_get_object(builder, "lblRSSI"));
@@ -299,7 +296,6 @@ display_main_initialize(void)
     gtk_widget_set_name((lblConnectionTitle),     "DiagnosticsTitle");
     gtk_widget_set_name((lblNewMACTitle),         "DiagnosticsTitle");
     gtk_widget_set_name((lblNewBoardRevTitle),    "DiagnosticsTitle");
-    gtk_widget_set_name((lblATCommandTitle),      "DiagnosticsTitle");
     gtk_widget_set_name((lblStatusTitle),         "DiagnosticsTitle");
     gtk_widget_set_name((lblReceiveTitle),        "DiagnosticsTitle");
     gtk_widget_set_name((lblLogfileTitle),        "DiagnosticsTitle");
@@ -372,7 +368,6 @@ display_main_initialize(void)
     // Buttons
     gtk_widget_set_name((btnNewMAC),      "button");
     gtk_widget_set_name((btnNewBoardRev), "button");
-    gtk_widget_set_name((btnATCommand),   "button");
     gtk_widget_set_name((btnMenu),        "button");
     gtk_widget_set_name((btnRTD),         "button");
     gtk_widget_set_name((btnReboot),      "button");
@@ -392,7 +387,6 @@ display_main_initialize(void)
     //
     // Link button presses to callback routines
     //
-    g_signal_connect(btnATCommand,   "clicked", G_CALLBACK(main_ATCommand_clicked), NULL);
     g_signal_connect(btnNewBoardRev, "clicked", G_CALLBACK(main_BOARDREV_clicked), NULL);
     g_signal_connect(btnNewMAC,      "clicked", G_CALLBACK(main_MAC_clicked), NULL);
     g_signal_connect(btnReboot,      "clicked", G_CALLBACK(main_REBOOT_clicked), NULL);

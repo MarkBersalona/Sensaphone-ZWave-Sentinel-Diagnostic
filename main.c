@@ -203,42 +203,6 @@ char* trim(char* paucInputString)
 //
 ///////////////////////////////////////////////////////////////////////////////
 
-////////////////////////////////////////////////////////////////////////////
-// Name:         main_ATCommand_clicked
-// Description:  Callback routine - ATCommand button clicked
-//               Send the user-entered AT command to the SARA-R5 on the ZWave Sentinel
-// Parameters:   the contents of the AT Command text entry
-// Return:       None
-////////////////////////////////////////////////////////////////////////////
-void main_ATCommand_clicked(void)
-{
-    char lcATCommand[100];
-    guint16 luiATCommandLength;
-
-    display_status_write("AT Command button pressed\r\n");
-
-    luiATCommandLength = gtk_entry_get_text_length(GTK_ENTRY(txtentATCommand));
-    //sprintf(lcTempMainString, "AT Command length = %d chars\r\n", luiATCommandLength);
-    //display_status_write(lcTempMainString);
-    if (luiATCommandLength > 0)
-    {
-        // Get the contents of the AT Command text entry
-        memset(lcATCommand, 0, sizeof(lcATCommand));
-        memcpy(lcATCommand, gtk_entry_get_text(GTK_ENTRY(txtentATCommand)), luiATCommandLength);
-
-        // Send the formatted AT Command to the ZWave Sentinel
-        //sprintf(lcTempMainString, "AT Command = >>%s<<\r\n", lcATCommand);
-        //display_status_write(lcTempMainString);
-        sprintf(lcTempMainString, "+++COMMAND:%s", lcATCommand);
-        serial_write(lcTempMainString);
-    }
-    else
-    {
-        display_status_write("WARNING - AT Command entry appears blank\r\n");
-    }
-}
-// end main_ATCommand_clicked
-
 
 ////////////////////////////////////////////////////////////////////////////
 // Name:         main_BOARDREV_clicked
