@@ -59,11 +59,6 @@ GtkWidget *lblValueZone1, *lblValueZone2, *lblValueZone3, *lblValueZone4, *lblVa
 GtkWidget *lblAlarmPower, *lblAlarmBattery, *lblAlarmLithium;
 GtkWidget *lblAlarmZone1, *lblAlarmZone2, *lblAlarmZone3, *lblAlarmZone4, *lblAlarmZone5, *lblAlarmRelay;
 
-GtkWidget *lblLatitudeTitle, *lblLongitudeTitle;
-GtkWidget *lblLatitude, *lblLongitude;
-GtkWidget *lblGPSTitle, *lblGLONASSTitle, *lblGalileoTitle, *lblBeiDouTitle, *lblQZSSTitle;
-GtkWidget *lblGPS, *lblGLONASS, *lblGalileo, *lblBeiDou, *lblQZSS;
-
 GtkWidget *lblStatusTitle, *textviewStatus;
 GtkWidget *lblReceiveTitle, *lblLogfileTitle, *swLogfileEnable, *lblLogfile;
 GtkWidget *textviewReceive;
@@ -263,21 +258,6 @@ display_main_initialize(void)
     lblAlarmZone5    = GTK_WIDGET(gtk_builder_get_object(builder, "lblAlarmZone5"));
     lblAlarmRelay    = GTK_WIDGET(gtk_builder_get_object(builder, "lblAlarmRelay"));
 
-    lblLatitudeTitle   = GTK_WIDGET(gtk_builder_get_object(builder, "lblLatitudeTitle"));
-    lblLongitudeTitle  = GTK_WIDGET(gtk_builder_get_object(builder, "lblLongitudeTitle"));
-    lblLatitude        = GTK_WIDGET(gtk_builder_get_object(builder, "lblLatitude"));
-    lblLongitude       = GTK_WIDGET(gtk_builder_get_object(builder, "lblLongitude"));
-    lblGPSTitle        = GTK_WIDGET(gtk_builder_get_object(builder, "lblGPSTitle"));
-    lblGLONASSTitle    = GTK_WIDGET(gtk_builder_get_object(builder, "lblGLONASSTitle"));
-    lblGalileoTitle    = GTK_WIDGET(gtk_builder_get_object(builder, "lblGalileoTitle"));
-    lblBeiDouTitle     = GTK_WIDGET(gtk_builder_get_object(builder, "lblBeiDouTitle"));
-    lblQZSSTitle       = GTK_WIDGET(gtk_builder_get_object(builder, "lblQZSSTitle"));
-    lblGPS             = GTK_WIDGET(gtk_builder_get_object(builder, "lblGPS"));
-    lblGLONASS         = GTK_WIDGET(gtk_builder_get_object(builder, "lblGLONASS"));
-    lblGalileo         = GTK_WIDGET(gtk_builder_get_object(builder, "lblGalileo"));
-    lblBeiDou          = GTK_WIDGET(gtk_builder_get_object(builder, "lblBeiDou"));
-    lblQZSS            = GTK_WIDGET(gtk_builder_get_object(builder, "lblQZSS"));
-
     lblStatusTitle  = GTK_WIDGET(gtk_builder_get_object(builder, "lblStatusTitle"));
     textviewStatus  = GTK_WIDGET(gtk_builder_get_object(builder, "textviewStatus"));
 		
@@ -327,13 +307,6 @@ display_main_initialize(void)
     gtk_widget_set_name((lblTypeTitle),           "DiagnosticsTitle");
     gtk_widget_set_name((lblValueTitle),          "DiagnosticsTitle");
     gtk_widget_set_name((lblAlarmTitle),          "DiagnosticsTitle");
-    gtk_widget_set_name((lblLatitudeTitle),       "DiagnosticsTitle");
-    gtk_widget_set_name((lblLongitudeTitle),      "DiagnosticsTitle");
-    gtk_widget_set_name((lblGPSTitle),            "DiagnosticsTitle");
-    gtk_widget_set_name((lblGLONASSTitle),        "DiagnosticsTitle");
-    gtk_widget_set_name((lblGalileoTitle),        "DiagnosticsTitle");
-    gtk_widget_set_name((lblBeiDouTitle),         "DiagnosticsTitle");
-    gtk_widget_set_name((lblQZSSTitle),           "DiagnosticsTitle");
     gtk_widget_set_name((lblRSSITitle),           "DiagnosticsTitle");
     gtk_widget_set_name((lblRSRPTitle),           "DiagnosticsTitle");
     gtk_widget_set_name((lblRSRQTitle),           "DiagnosticsTitle");
@@ -395,14 +368,6 @@ display_main_initialize(void)
     gtk_widget_set_name((lblAlarmZone4),        "DiagnosticValue");
     gtk_widget_set_name((lblAlarmZone5),        "DiagnosticValue");
     gtk_widget_set_name((lblAlarmRelay),        "DiagnosticValue");
-
-    gtk_widget_set_name((lblLatitude),          "DiagnosticValue");
-    gtk_widget_set_name((lblLongitude),         "DiagnosticValue");
-    gtk_widget_set_name((lblGPS),               "DiagnosticValue");
-    gtk_widget_set_name((lblGLONASS),           "DiagnosticValue");
-    gtk_widget_set_name((lblGalileo),           "DiagnosticValue");
-    gtk_widget_set_name((lblBeiDou),            "DiagnosticValue");
-    gtk_widget_set_name((lblQZSS),              "DiagnosticValue");
 
     // Buttons
     gtk_widget_set_name((btnNewMAC),      "button");
@@ -500,14 +465,6 @@ void display_clear_UUT_values(void)
     gtk_widget_set_name((lblAlarmRelay),        "DiagnosticValue");
     
     
-    gtk_label_set_text(GTK_LABEL(lblLatitude),  "------");
-    gtk_label_set_text(GTK_LABEL(lblLongitude), "------");
-    gtk_label_set_text(GTK_LABEL(lblGPS),       "0");
-    gtk_label_set_text(GTK_LABEL(lblGLONASS),   "0");
-    gtk_label_set_text(GTK_LABEL(lblGalileo),   "0");
-    gtk_label_set_text(GTK_LABEL(lblBeiDou),    "0");
-    gtk_label_set_text(GTK_LABEL(lblQZSS),      "0");
-
     // Clear the Status text buffer
     gtk_text_buffer_get_start_iter(textbufStatus, &textiterStatusStart);
     gtk_text_buffer_get_end_iter  (textbufStatus, &textiterStatusEnd);

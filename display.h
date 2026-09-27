@@ -36,9 +36,6 @@ extern GtkWidget *lblValueZone1, *lblValueZone2, *lblValueZone3, *lblValueZone4,
 extern GtkWidget *lblAlarmPower, *lblAlarmBattery, *lblAlarmLithium;
 extern GtkWidget *lblAlarmZone1, *lblAlarmZone2, *lblAlarmZone3, *lblAlarmZone4, *lblAlarmZone5, *lblAlarmRelay;
 
-extern GtkWidget *lblLatitude, *lblLongitude;
-extern GtkWidget *lblGPS, *lblGLONASS, *lblGalileo, *lblBeiDou, *lblQZSS;
-
 extern GtkWidget *lblLogfile;
 
 extern GtkWidget *lblStatusTitle;

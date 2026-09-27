@@ -54,3 +54,7 @@ nbproject/project.xml
 400CellularDiagnostic.glade~
 
 \#400CellularDiagnostic.glade#
+
+zwave_sentinel_diagnostic
+
+*.glade~
