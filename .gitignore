@@ -58,3 +58,5 @@ nbproject/project.xml
 zwave_sentinel_diagnostic
 
 *.glade~
+
+*.txt

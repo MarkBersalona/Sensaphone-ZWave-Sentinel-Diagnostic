@@ -81,28 +81,18 @@ char* pucMenuItems[] =
 {
     "Display menu",
     "Erase ext. flash",
-    "Sensaphone cert",
-    "Cellular info",
     "App CRC",
     "App to ext. flash",
 
     "App from ext. flash",
-    "Start FTP FOTA",
-    "SARA-R5 defaults",
-    "Airplane mode on/off",
-    "Calib. zones 1-5",
-    "Write zone configs",
 
-    "Read  zone configs",
     "SPI flash test (big)",
     "SPI flash test (small)",
-    "GNSS shutdown",
     "ACK all alarms",
 
     "Read MAC/SN",
     "Read Board rev.",
     "Toggle lamps",
-    "Toggle quick scan",
     "Toggle relay",
 
     "Ping server",
@@ -116,28 +106,18 @@ char* pucMenuCMD[] =
 {
     "0", // Display menu
     "1", // Erase ext. flash
-    "2", // Sensaphone cert
-    "3", // Cellular info
     "4", // App CRC
     "5", // App to ext. flash
 
     "6", // App from ext. flash
-    "7", // Start FTP FOTA
-    "8", // SARA-R5 defaults
-    "A", // Airplane mode on/off
-    "C", // Calib. zones 1-4
-    "E", // Write zone configs
     
-    "e", // Read  zone configs
     "F", // SPI flash test (big)
     "f", // SPI flash test (small)
-    "G", // GNSS shutdown
     "K", // ACK all alarms
 
     "m", // Read MAC/SN
     "b", // Read Board rev.
     "L", // Toggle lamps
-    "Q", // Toggle quick scan
     "R", // Toggle relay
 
     "P", // Ping server

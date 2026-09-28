@@ -481,8 +481,8 @@ main_parse_msg(char *paucReceiveMsg)
         }
     }
     
-    // Look for "ZWave Sentinel starting..."
-    plcDetected = strstr((char*)paucReceiveMsg, "ZWave Sentinel starting...");
+    // Look for "Sensaphone Z-Wave Sentinel starting..."
+    plcDetected = strstr((char*)paucReceiveMsg, "Sensaphone Z-Wave Sentinel starting...");
     if (plcDetected)
     {
         // This is a new UUT or the old UUT restarting
@@ -611,7 +611,7 @@ main_parse_msg(char *paucReceiveMsg)
     {
         // Write the ZWave Sentinel FW version to Status and to the 400 FW label
         memset (lcTempMainString, 0, sizeof(lcTempMainString));
-        memcpy (lcTempMainString, plcDetected+33, strlen(plcDetected+33));
+        memcpy (lcTempMainString, plcDetected+35, strlen(plcDetected+35));
         display_status_write("Detected ZWave Sentinel firmware version: ");
         display_status_write(lcTempMainString);
         display_status_write("\r\n");
