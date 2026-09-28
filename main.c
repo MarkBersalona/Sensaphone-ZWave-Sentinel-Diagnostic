@@ -360,7 +360,15 @@ void main_MENU_clicked(void)
         display_status_write(lcTempMainString);
 
         // Send the formatted menu command to the ZWave Sentinel
-        sprintf(lcTempMainString, "+++MENU:%s", pucMenuCMD[liMenuItemSelected]);
+        if ('T' == pucMenuCMD[liMenuItemSelected][0])
+        {
+            // Sync RTC to local time with UNIX timestamp
+            sprintf(lcTempMainString, "+++MENU:%s %d", pucMenuCMD[liMenuItemSelected], gulUNIXTimestamp);
+        }
+        else
+        {
+            sprintf(lcTempMainString, "+++MENU:%s", pucMenuCMD[liMenuItemSelected]);
+        }
         serial_write(lcTempMainString);
     }
 }

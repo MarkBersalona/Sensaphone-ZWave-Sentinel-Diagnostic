@@ -96,6 +96,7 @@ char* pucMenuItems[] =
     "Toggle relay",
 
     "Ping server",
+    "Sync RTC",
     "Zone Update POST",
     "RESET to defaults",
     "REBOOT",
@@ -121,6 +122,7 @@ char* pucMenuCMD[] =
     "R", // Toggle relay
 
     "P", // Ping server
+    "T", // Sync RTC
     "U", // Zone Update POST
     "X", // RESET to defaults
     "Z", // REBOOT
