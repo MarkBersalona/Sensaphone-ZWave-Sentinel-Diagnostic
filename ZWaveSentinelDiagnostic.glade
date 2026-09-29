@@ -58,12 +58,12 @@
               </packing>
             </child>
             <child>
-              <object class="GtkLabel" id="lblTransceiverTitle">
+              <object class="GtkLabel" id="lblZWaveNodesTitle">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="halign">end</property>
                 <property name="margin-right">10</property>
-                <property name="label" translatable="yes">Transceiver</property>
+                <property name="label" translatable="yes">ZWave nodes</property>
               </object>
               <packing>
                 <property name="left-attach">2</property>
@@ -71,158 +71,18 @@
               </packing>
             </child>
             <child>
-              <object class="GtkLabel" id="lblTransceiverFWTitle">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="halign">end</property>
-                <property name="margin-right">10</property>
-                <property name="label" translatable="yes">FW</property>
-              </object>
-              <packing>
-                <property name="left-attach">2</property>
-                <property name="top-attach">1</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkLabel" id="lblICCIDTitle">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="halign">end</property>
-                <property name="margin-right">10</property>
-                <property name="label" translatable="yes">ICCID</property>
-              </object>
-              <packing>
-                <property name="left-attach">2</property>
-                <property name="top-attach">2</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkLabel" id="lblIMEITitle">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="halign">end</property>
-                <property name="margin-right">10</property>
-                <property name="label" translatable="yes">IMEI</property>
-              </object>
-              <packing>
-                <property name="left-attach">2</property>
-                <property name="top-attach">3</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkLabel" id="lblTransceiver">
+              <object class="GtkLabel" id="lblZWaveNodes">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="halign">start</property>
                 <property name="margin-right">20</property>
                 <property name="hexpand">True</property>
-                <property name="label" translatable="yes">SARA-R510M8S-01B-00</property>
+                <property name="label" translatable="yes">0000</property>
                 <property name="selectable">True</property>
               </object>
               <packing>
                 <property name="left-attach">3</property>
                 <property name="top-attach">0</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkLabel" id="lblTransceiverFW">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="halign">start</property>
-                <property name="margin-right">20</property>
-                <property name="hexpand">True</property>
-                <property name="label" translatable="yes">03.15</property>
-                <property name="selectable">True</property>
-              </object>
-              <packing>
-                <property name="left-attach">3</property>
-                <property name="top-attach">1</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkLabel" id="lblICCID">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="halign">start</property>
-                <property name="margin-right">20</property>
-                <property name="hexpand">True</property>
-                <property name="label" translatable="yes">89148000005471114678</property>
-                <property name="selectable">True</property>
-              </object>
-              <packing>
-                <property name="left-attach">3</property>
-                <property name="top-attach">2</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkLabel" id="lblIMEI">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="halign">start</property>
-                <property name="margin-right">20</property>
-                <property name="hexpand">True</property>
-                <property name="label" translatable="yes">355598110014663</property>
-                <property name="selectable">True</property>
-              </object>
-              <packing>
-                <property name="left-attach">3</property>
-                <property name="top-attach">3</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkLabel" id="lblSerialAPITitle">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="halign">end</property>
-                <property name="margin-right">10</property>
-                <property name="label" translatable="yes">SerialAPI</property>
-              </object>
-              <packing>
-                <property name="left-attach">4</property>
-                <property name="top-attach">1</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkLabel" id="lblSmartStartTitle">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="halign">end</property>
-                <property name="margin-right">10</property>
-                <property name="label" translatable="yes">SmartStart</property>
-              </object>
-              <packing>
-                <property name="left-attach">4</property>
-                <property name="top-attach">2</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkLabel" id="lblSerialAPI">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="halign">start</property>
-                <property name="margin-right">20</property>
-                <property name="hexpand">True</property>
-                <property name="label" translatable="yes">IDLE</property>
-                <property name="selectable">True</property>
-              </object>
-              <packing>
-                <property name="left-attach">5</property>
-                <property name="top-attach">1</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkLabel" id="lblSmartStart">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="halign">start</property>
-                <property name="margin-right">20</property>
-                <property name="hexpand">True</property>
-                <property name="label" translatable="yes">IDLE</property>
-                <property name="selectable">True</property>
-              </object>
-              <packing>
-                <property name="left-attach">5</property>
-                <property name="top-attach">2</property>
               </packing>
             </child>
             <child>
@@ -342,17 +202,31 @@
               </packing>
             </child>
             <child>
-              <object class="GtkLabel" id="lblBootstrap">
+              <object class="GtkLabel" id="lblSmartStartTitle">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="halign">end</property>
+                <property name="margin-right">10</property>
+                <property name="label" translatable="yes">SmartStart</property>
+              </object>
+              <packing>
+                <property name="left-attach">4</property>
+                <property name="top-attach">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="lblSmartStart">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="halign">start</property>
+                <property name="margin-right">20</property>
                 <property name="hexpand">True</property>
                 <property name="label" translatable="yes">IDLE</property>
                 <property name="selectable">True</property>
               </object>
               <packing>
                 <property name="left-attach">5</property>
-                <property name="top-attach">3</property>
+                <property name="top-attach">1</property>
               </packing>
             </child>
             <child>
@@ -365,8 +239,66 @@
               </object>
               <packing>
                 <property name="left-attach">4</property>
-                <property name="top-attach">3</property>
+                <property name="top-attach">2</property>
               </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="lblBootstrap">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="halign">start</property>
+                <property name="hexpand">True</property>
+                <property name="label" translatable="yes">IDLE</property>
+                <property name="selectable">True</property>
+              </object>
+              <packing>
+                <property name="left-attach">5</property>
+                <property name="top-attach">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="lblZWaveLiveNodesTitle">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="halign">end</property>
+                <property name="label" translatable="yes">ZWave live nodes</property>
+              </object>
+              <packing>
+                <property name="left-attach">2</property>
+                <property name="top-attach">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="lblZWaveLiveNodes">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="halign">start</property>
+                <property name="hexpand">True</property>
+                <property name="label" translatable="yes">0000</property>
+                <property name="selectable">True</property>
+              </object>
+              <packing>
+                <property name="left-attach">3</property>
+                <property name="top-attach">1</property>
+              </packing>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
             </child>
             <child>
               <placeholder/>

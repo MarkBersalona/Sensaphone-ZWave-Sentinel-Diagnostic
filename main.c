@@ -530,41 +530,6 @@ main_parse_msg(char *paucReceiveMsg)
         }
     }
     
-    // Look for "Model number is "
-    plcDetected = strstr((char*)paucReceiveMsg, "Model number is ");
-    if (plcDetected)
-    {
-        plcQuoteStart = strchr(plcDetected+16, 0x22); // search for double quote
-        plcQuoteEnd   = strchr(plcDetected+21, 0x22); // search for double quote
-        if (plcQuoteStart && plcQuoteEnd && (plcQuoteEnd-plcQuoteStart > 5) ) // both quotes found
-        {
-            // Write the transceiver model to Status and to the transceiver label
-            memset (lcTempMainString, 0, sizeof(lcTempMainString));
-            memcpy (lcTempMainString, plcQuoteStart+1, plcQuoteEnd-plcQuoteStart-1);
-            display_status_write("Detected transceiver model: ");
-            display_status_write(lcTempMainString);
-            display_status_write("\r\n");
-            gtk_label_set_text(GTK_LABEL(lblTransceiver), lcTempMainString);
-        }
-    }
-    
-    // Look for "SARA-R5 FW version number is "
-    plcDetected = strstr((char*)paucReceiveMsg, "SARA-R5 FW version number is ");
-    if (plcDetected)
-    {
-        plcQuoteStart = strchr(plcDetected+29, 0x22); // search for double quote
-        plcQuoteEnd   = strchr(plcDetected+32, 0x22); // search for double quote
-        if (plcQuoteStart && plcQuoteEnd && (plcQuoteEnd-plcQuoteStart > 2) ) // both quotes found
-        {
-            // Write the transceiver firmware version to Status and to the transceiver FW label
-            memset (lcTempMainString, 0, sizeof(lcTempMainString));
-            memcpy (lcTempMainString, plcQuoteStart+1, plcQuoteEnd-plcQuoteStart-1);
-            display_status_write("Detected transceiver FW version: ");
-            display_status_write(lcTempMainString);
-            display_status_write("\r\n");
-            gtk_label_set_text(GTK_LABEL(lblTransceiverFW), lcTempMainString);
-        }
-    }
         
     // Look for "Board revision = "
     plcDetected = strstr((char*)paucReceiveMsg, "Board revision = ");
@@ -579,39 +544,6 @@ main_parse_msg(char *paucReceiveMsg)
         gtk_label_set_text(GTK_LABEL(lblBoardRev), lcTempMainString);
     }
     
-    // Look for "IMEI is "
-    plcDetected = strstr((char*)paucReceiveMsg, "IMEI is ");
-    if (plcDetected)
-    {
-        plcQuoteStart = strchr(plcDetected+8,  0x22); // search for double quote
-        plcQuoteEnd   = strchr(plcDetected+12, 0x22); // search for double quote
-        if (plcQuoteStart && plcQuoteEnd && (plcQuoteEnd-plcQuoteStart > 5) ) // both quotes found
-        {
-            // Write the IMEI to Status and to the IMEI label
-            memset (lcTempMainString, 0, sizeof(lcTempMainString));
-            memcpy (lcTempMainString, plcQuoteStart+1, plcQuoteEnd-plcQuoteStart-1);
-            display_status_write("Detected IMEI: ");
-            display_status_write(lcTempMainString);
-            display_status_write("\r\n");
-            gtk_label_set_text(GTK_LABEL(lblIMEI), lcTempMainString);
-        }
-    }
-    
-    // Look for "ICCID is "
-    // (but only if there's a significant string following)
-    plcDetected = strstr((char*)paucReceiveMsg, "ICCID is ");
-    if (plcDetected)
-    {
-        memset (lcTempMainString, 0, sizeof(lcTempMainString));
-        memcpy (lcTempMainString, plcDetected+9, strlen(plcDetected+9));
-        if (strlen(lcTempMainString) > 20)
-        {
-            display_status_write("Detected ICCID: ");
-            display_status_write(lcTempMainString);
-            display_status_write("\r\n");
-            gtk_label_set_text(GTK_LABEL(lblICCID), lcTempMainString);
-        }
-    }
     
     // Look for "ZWave Sentinel firmware version is "
     plcDetected = strstr((char*)paucReceiveMsg, "ZWave Sentinel firmware version is ");

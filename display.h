@@ -22,7 +22,6 @@ extern "C" {
 extern GtkCssProvider *cssProvider;
 extern GtkWindow *window;
 extern GtkWidget *lblMAC, *lblBoardRev, *lbl400FW;
-extern GtkWidget *lblTransceiver, *lblTransceiverFW, *lblICCID, *lblIMEI;
 extern GtkWidget *txtentNewMAC, *txtentNewBoardRev;
 extern GtkWidget *cbtMenu;
 extern GtkWidget *swLogfileEnable, *lblLogfile;
