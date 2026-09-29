@@ -36,6 +36,8 @@ GtkWidget *lblMACTitle, *lblBoardRevTitle, *lbl400FWTitle;
 GtkWidget *lblMAC, *lblBoardRev, *lbl400FW;
 GtkWidget *lblRTCTitle, *lblConnectionTitle;
 GtkWidget *lblRTC, *lblConnection;
+GtkWidget *lblZWaveNodesTitle, *lblZWaveLiveNodesTitle;
+GtkWidget *lblZWaveNodes, *lblZWaveLiveNodes;
 
 GtkWidget *lblNewMACTitle, *lblNewBoardRevTitle;
 GtkWidget *txtentNewMAC, *txtentNewBoardRev;
@@ -154,6 +156,11 @@ display_main_initialize(void)
     lblRTCTitle            = GTK_WIDGET(gtk_builder_get_object(builder, "lblRTCTitle"));
     lblRTC                 = GTK_WIDGET(gtk_builder_get_object(builder, "lblRTC"));
 		
+    lblZWaveNodesTitle     = GTK_WIDGET(gtk_builder_get_object(builder, "lblZWaveNodesTitle"));
+    lblZWaveNodes          = GTK_WIDGET(gtk_builder_get_object(builder, "lblZWaveNodes"));
+    lblZWaveLiveNodesTitle = GTK_WIDGET(gtk_builder_get_object(builder, "lblZWaveLiveNodesTitle"));
+    lblZWaveLiveNodes      = GTK_WIDGET(gtk_builder_get_object(builder, "lblZWaveLiveNodes"));
+    
     lblConnectionTitle    = GTK_WIDGET(gtk_builder_get_object(builder, "lblConnectionTitle"));
     lblConnection         = GTK_WIDGET(gtk_builder_get_object(builder, "lblConnection"));
 		
@@ -249,6 +256,8 @@ display_main_initialize(void)
     gtk_widget_set_name((lblBoardRevTitle),       "DiagnosticsTitle");
     gtk_widget_set_name((lbl400FWTitle),          "DiagnosticsTitle");
     gtk_widget_set_name((lblRTCTitle),            "DiagnosticsTitle");
+    gtk_widget_set_name((lblZWaveNodesTitle),     "DiagnosticsTitle");
+    gtk_widget_set_name((lblZWaveLiveNodesTitle), "DiagnosticsTitle");
     gtk_widget_set_name((lblConnectionTitle),     "DiagnosticsTitle");
     gtk_widget_set_name((lblNewMACTitle),         "DiagnosticsTitle");
     gtk_widget_set_name((lblNewBoardRevTitle),    "DiagnosticsTitle");
@@ -280,6 +289,8 @@ display_main_initialize(void)
     gtk_widget_set_name((lblBoardRev),       "DiagnosticValue");
     gtk_widget_set_name((lbl400FW),          "DiagnosticValue");
     gtk_widget_set_name((lblRTC),            "DiagnosticValue");
+    gtk_widget_set_name((lblZWaveNodes),     "DiagnosticValue");
+    gtk_widget_set_name((lblZWaveLiveNodes), "DiagnosticValue");
     gtk_widget_set_name((lblConnection),     "DiagnosticValue");
     gtk_widget_set_name((lblLogfile),        "DiagnosticValue");
 
@@ -354,6 +365,8 @@ void display_clear_UUT_values(void)
     gtk_label_set_text(GTK_LABEL(lblBoardRev), "-");
     gtk_label_set_text(GTK_LABEL(lbl400FW), "vX.X.X");
     gtk_label_set_text(GTK_LABEL(lblRTC), "---------------");
+    gtk_label_set_text(GTK_LABEL(lblZWaveNodes),     "----");
+    gtk_label_set_text(GTK_LABEL(lblZWaveLiveNodes), "----");
     gtk_label_set_text(GTK_LABEL(lblConnection), "---------------");
     gtk_widget_set_name((lblConnection),     "DiagnosticValue");
 

@@ -261,6 +261,7 @@
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="halign">end</property>
+                <property name="margin-right">10</property>
                 <property name="label" translatable="yes">ZWave live nodes</property>
               </object>
               <packing>
