@@ -27,6 +27,7 @@ extern GtkWidget *cbtMenu;
 extern GtkWidget *swLogfileEnable, *lblLogfile;
 extern GtkWidget *lblRTC, *lblConnection;
 extern GtkWidget *lblZWaveNodes, *lblZWaveLiveNodes;
+extern GtkWidget *lblSmartStart, *lblBootstrap;
 
 extern GtkWidget *lblTypePower, *lblTypeBattery, *lblTypeLithium;
 extern GtkWidget *lblTypeZone1, *lblTypeZone2, *lblTypeZone3, *lblTypeZone4, *lblTypeZone5, *lblTypeRelay;

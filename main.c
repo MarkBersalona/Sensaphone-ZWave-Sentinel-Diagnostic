@@ -608,6 +608,128 @@ main_parse_msg(char *paucReceiveMsg)
         serial_write("+++");
     }
     
+    // Look for "Network_Online_StateMachine: Transitioning from "
+    plcDetected = strstr((char*)paucReceiveMsg, "Network_Online_StateMachine: Transitioning from ");
+    if (plcDetected)
+    {
+        // Write the ZWave Sentinel's network online state transition to Status
+        display_status_write(paucReceiveMsg);
+        display_status_write("\r\n");
+
+        // Get the new connection state
+        plcDetectedParam = strstr((char*)paucReceiveMsg, " to ");
+        if (plcDetectedParam)
+        {
+            memset (lcTempMainString, 0, sizeof(lcTempMainString));
+            memcpy (lcTempMainString, plcDetectedParam+4, strlen(trim(plcDetectedParam+4)));
+            gtk_label_set_text(GTK_LABEL(lblConnection), lcTempMainString);
+            if ( strstr((char*)lcTempMainString, "CONNECTED") )
+            {
+                gtk_widget_set_name((lblConnection),     "ConnectionOK");     // green
+
+                // Clear sticky error status, prep for the next one
+                memset(gucStickyErrorStatus, 0x00, sizeof(gucStickyErrorStatus));
+                guiStickyErrorCountdown_sec = STICKY_ERROR_COUNT_PERIOD_SECONDS;
+                gtk_label_set_text(GTK_LABEL(lblStatusTitle),  "Status");
+            }
+            else if ( strstr((char*)lcTempMainString, "ERROR") || 
+                      strstr((char*)lcTempMainString, "Error")    )
+            {
+                gtk_widget_set_name((lblConnection),     "ConnectionError");     // red
+            }
+            else if ( strstr((char*)lcTempMainString, "UPDATING") )
+            {
+                gtk_widget_set_name((lblConnection),     "ConnectionWarning");   // yellow
+            }
+            else
+            {
+                gtk_widget_set_name((lblConnection),     "DiagnosticValue");  // white
+            }
+        }
+    }
+    
+    // Look for "ZWave_SmartStart_StateMachine: Transitioning "
+    plcDetected = strstr((char*)paucReceiveMsg, "ZWave_SmartStart_StateMachine: Transitioning ");
+    if (plcDetected)
+    {
+        // Write the ZWave Sentinel's SmartStart state transition to Status
+        display_status_write(paucReceiveMsg);
+        display_status_write("\r\n");
+
+        // Get the new SmartStart state
+        plcDetectedParam = strstr((char*)paucReceiveMsg, " to ");
+        if (plcDetectedParam)
+        {
+            memset (lcTempMainString, 0, sizeof(lcTempMainString));
+            memcpy (lcTempMainString, plcDetectedParam+4, strlen(trim(plcDetectedParam+4)));
+            gtk_label_set_text(GTK_LABEL(lblSmartStart), lcTempMainString);
+            if ( strstr((char*)lcTempMainString, "ACTIVE") )
+            {
+                gtk_widget_set_name((lblSmartStart),     "ConnectionOK");     // green
+            }
+            /*
+            else if ( strstr((char*)lcTempMainString, "ERROR") || 
+                      strstr((char*)lcTempMainString, "Error")    )
+            {
+                gtk_widget_set_name((lblSmartStart),     "ConnectionError");     // red
+            }
+            */
+            else if ( strstr((char*)lcTempMainString, "BOOTSTRAP") )
+            {
+                gtk_widget_set_name((lblSmartStart),     "ConnectionWarning");   // yellow
+            }
+            else
+            {
+                gtk_widget_set_name((lblSmartStart),     "DiagnosticValue");  // white
+            }
+        }
+    }
+    
+    // Look for "ZWave_Bootstrap_StateMachine: Transitioning "
+    plcDetected = strstr((char*)paucReceiveMsg, "ZWave_Bootstrap_StateMachine: Transitioning ");
+    if (plcDetected)
+    {
+        // Write the ZWave Sentinel's Bootstrap state transition to Status
+        display_status_write(paucReceiveMsg);
+        display_status_write("\r\n");
+
+        // Get the new Bootstrap state
+        plcDetectedParam = strstr((char*)paucReceiveMsg, " to ");
+        if (plcDetectedParam)
+        {
+            memset (lcTempMainString, 0, sizeof(lcTempMainString));
+            memcpy (lcTempMainString, plcDetectedParam+4, strlen(trim(plcDetectedParam+4)));
+            gtk_label_set_text(GTK_LABEL(lblBootstrap), lcTempMainString);
+            if ( strstr((char*)lcTempMainString, "COMPLETE") )
+            {
+                gtk_widget_set_name((lblBootstrap),     "ConnectionOK");     // green
+            }
+            else if ( strstr((char*)lcTempMainString, "ERROR") || 
+                      strstr((char*)lcTempMainString, "Error")    )
+            {
+                gtk_widget_set_name((lblBootstrap),     "ConnectionError");     // red
+            }
+            else if ( strstr((char*)lcTempMainString, "NETWORK_KEY_VERIFY") )
+            {
+                gtk_widget_set_name((lblBootstrap),     "ConnectionWarning");   // yellow
+            }
+            else
+            {
+                gtk_widget_set_name((lblBootstrap),     "DiagnosticValue");  // white
+            }
+        }
+    }
+    
+    // Look for "+++ Start DIAGNOSTIC MODE +++"
+    plcDetected = strstr((char*)paucReceiveMsg, "+++ Start DIAGNOSTIC MODE +++");
+    if (plcDetected)
+    {
+        // Diagnostic mode is enabled on the ZWave Sentinel
+        // Send a sacrificial dummy string to "initialize" serial_write()
+        // and ZWave Sentinel Diagnostic receive
+        serial_write("+++");
+    }
+    
     // Look for "Periodic battery status: Main power "
     plcDetected = strstr((char*)paucReceiveMsg, "Periodic battery status: Main power ");
     if (plcDetected)
@@ -886,6 +1008,26 @@ main_parse_msg(char *paucReceiveMsg)
 
         // Save error message as a sticky one
         strcpy(gucStickyErrorStatus, lcTempMainString);
+    }
+    
+    // Look for Active node count
+    plcDetected = strstr((char*)paucReceiveMsg, "Active node count: ");
+    if (plcDetected)
+    {
+        // Write Active node count to Active node count label
+        memset (lcTempMainString, 0, sizeof(lcTempMainString));
+        memcpy (lcTempMainString, plcDetected+19, strlen(plcDetected+19));
+        gtk_label_set_text(GTK_LABEL(lblZWaveNodes),  lcTempMainString);
+    }
+    
+    // Look for Live node count
+    plcDetected = strstr((char*)paucReceiveMsg, "Live node count: ");
+    if (plcDetected)
+    {
+        // Write Live node count to Live node count label
+        memset (lcTempMainString, 0, sizeof(lcTempMainString));
+        memcpy (lcTempMainString, plcDetected+17, strlen(plcDetected+17));
+        gtk_label_set_text(GTK_LABEL(lblZWaveLiveNodes),  lcTempMainString);
     }
     
     // Look for "Zone Update Pending in "

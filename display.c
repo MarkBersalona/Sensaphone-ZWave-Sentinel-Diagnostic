@@ -38,6 +38,8 @@ GtkWidget *lblRTCTitle, *lblConnectionTitle;
 GtkWidget *lblRTC, *lblConnection;
 GtkWidget *lblZWaveNodesTitle, *lblZWaveLiveNodesTitle;
 GtkWidget *lblZWaveNodes, *lblZWaveLiveNodes;
+GtkWidget *lblSmartStartTitle, *lblBootstrapTitle;
+GtkWidget *lblSmartStart, *lblBootstrap;
 
 GtkWidget *lblNewMACTitle, *lblNewBoardRevTitle;
 GtkWidget *txtentNewMAC, *txtentNewBoardRev;
@@ -163,7 +165,11 @@ display_main_initialize(void)
     
     lblConnectionTitle    = GTK_WIDGET(gtk_builder_get_object(builder, "lblConnectionTitle"));
     lblConnection         = GTK_WIDGET(gtk_builder_get_object(builder, "lblConnection"));
-		
+    lblSmartStartTitle    = GTK_WIDGET(gtk_builder_get_object(builder, "lblSmartStartTitle"));
+    lblSmartStart         = GTK_WIDGET(gtk_builder_get_object(builder, "lblSmartStart"));
+    lblBootstrapTitle     = GTK_WIDGET(gtk_builder_get_object(builder, "lblBootstrapTitle"));
+    lblBootstrap          = GTK_WIDGET(gtk_builder_get_object(builder, "lblBootstrap"));
+    		
     lblNewMACTitle      = GTK_WIDGET(gtk_builder_get_object(builder, "lblNewMACTitle"));
     txtentNewMAC        = GTK_WIDGET(gtk_builder_get_object(builder, "txtentNewMAC"));
     btnNewMAC           = GTK_WIDGET(gtk_builder_get_object(builder, "btnNewMAC"));
@@ -259,6 +265,8 @@ display_main_initialize(void)
     gtk_widget_set_name((lblZWaveNodesTitle),     "DiagnosticsTitle");
     gtk_widget_set_name((lblZWaveLiveNodesTitle), "DiagnosticsTitle");
     gtk_widget_set_name((lblConnectionTitle),     "DiagnosticsTitle");
+    gtk_widget_set_name((lblSmartStartTitle),     "DiagnosticsTitle");
+    gtk_widget_set_name((lblBootstrapTitle),      "DiagnosticsTitle");
     gtk_widget_set_name((lblNewMACTitle),         "DiagnosticsTitle");
     gtk_widget_set_name((lblNewBoardRevTitle),    "DiagnosticsTitle");
     gtk_widget_set_name((lblStatusTitle),         "DiagnosticsTitle");
@@ -292,6 +300,8 @@ display_main_initialize(void)
     gtk_widget_set_name((lblZWaveNodes),     "DiagnosticValue");
     gtk_widget_set_name((lblZWaveLiveNodes), "DiagnosticValue");
     gtk_widget_set_name((lblConnection),     "DiagnosticValue");
+    gtk_widget_set_name((lblSmartStart),     "DiagnosticValue");
+    gtk_widget_set_name((lblBootstrap),      "DiagnosticValue");
     gtk_widget_set_name((lblLogfile),        "DiagnosticValue");
 
     gtk_widget_set_name((lblTypeZone1),        "DiagnosticValue");
@@ -369,6 +379,10 @@ void display_clear_UUT_values(void)
     gtk_label_set_text(GTK_LABEL(lblZWaveLiveNodes), "----");
     gtk_label_set_text(GTK_LABEL(lblConnection), "---------------");
     gtk_widget_set_name((lblConnection),     "DiagnosticValue");
+    gtk_label_set_text(GTK_LABEL(lblSmartStart), "---------------");
+    gtk_widget_set_name((lblSmartStart),     "DiagnosticValue");
+    gtk_label_set_text(GTK_LABEL(lblBootstrap),  "---------------");
+    gtk_widget_set_name((lblBootstrap),     "DiagnosticValue");
 
     gtk_label_set_text(GTK_LABEL(lblTypeZone1), "------");
     gtk_label_set_text(GTK_LABEL(lblTypeZone2), "------");
