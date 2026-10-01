@@ -674,12 +674,13 @@ main_parse_msg(char *paucReceiveMsg)
                 gtk_widget_set_name((lblSmartStart),     "ConnectionError");     // red
             }
             */
-            else if ( strstr((char*)lcTempMainString, "BOOTSTRAP") )
+            else if ( strstr((char*)lcTempMainString, "BOOTSTRAP") ||
+                      strstr((char*)lcTempMainString, "EXCLUSION")    )
             {
                 gtk_widget_set_name((lblSmartStart),     "ConnectionWarning");   // yellow
             }
             else
-            {
+            { 
                 gtk_widget_set_name((lblSmartStart),     "DiagnosticValue");  // white
             }
         }
@@ -709,7 +710,7 @@ main_parse_msg(char *paucReceiveMsg)
             {
                 gtk_widget_set_name((lblBootstrap),     "ConnectionError");     // red
             }
-            else if ( strstr((char*)lcTempMainString, "NETWORK_KEY_VERIFY") )
+            else if ( strstr((char*)lcTempMainString, "xxxxxxxxxxxxxxxxxx") )
             {
                 gtk_widget_set_name((lblBootstrap),     "ConnectionWarning");   // yellow
             }
