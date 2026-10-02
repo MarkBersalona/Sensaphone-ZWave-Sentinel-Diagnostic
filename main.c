@@ -608,46 +608,6 @@ main_parse_msg(char *paucReceiveMsg)
         serial_write("+++");
     }
     
-    // Look for "Network_Online_StateMachine: Transitioning from "
-    plcDetected = strstr((char*)paucReceiveMsg, "Network_Online_StateMachine: Transitioning from ");
-    if (plcDetected)
-    {
-        // Write the ZWave Sentinel's network online state transition to Status
-        display_status_write(paucReceiveMsg);
-        display_status_write("\r\n");
-
-        // Get the new connection state
-        plcDetectedParam = strstr((char*)paucReceiveMsg, " to ");
-        if (plcDetectedParam)
-        {
-            memset (lcTempMainString, 0, sizeof(lcTempMainString));
-            memcpy (lcTempMainString, plcDetectedParam+4, strlen(trim(plcDetectedParam+4)));
-            gtk_label_set_text(GTK_LABEL(lblConnection), lcTempMainString);
-            if ( strstr((char*)lcTempMainString, "CONNECTED") )
-            {
-                gtk_widget_set_name((lblConnection),     "ConnectionOK");     // green
-
-                // Clear sticky error status, prep for the next one
-                memset(gucStickyErrorStatus, 0x00, sizeof(gucStickyErrorStatus));
-                guiStickyErrorCountdown_sec = STICKY_ERROR_COUNT_PERIOD_SECONDS;
-                gtk_label_set_text(GTK_LABEL(lblStatusTitle),  "Status");
-            }
-            else if ( strstr((char*)lcTempMainString, "ERROR") || 
-                      strstr((char*)lcTempMainString, "Error")    )
-            {
-                gtk_widget_set_name((lblConnection),     "ConnectionError");     // red
-            }
-            else if ( strstr((char*)lcTempMainString, "UPDATING") )
-            {
-                gtk_widget_set_name((lblConnection),     "ConnectionWarning");   // yellow
-            }
-            else
-            {
-                gtk_widget_set_name((lblConnection),     "DiagnosticValue");  // white
-            }
-        }
-    }
-    
     // Look for "ZWave_SmartStart_StateMachine: Transitioning "
     plcDetected = strstr((char*)paucReceiveMsg, "ZWave_SmartStart_StateMachine: Transitioning ");
     if (plcDetected)
@@ -663,7 +623,7 @@ main_parse_msg(char *paucReceiveMsg)
             memset (lcTempMainString, 0, sizeof(lcTempMainString));
             memcpy (lcTempMainString, plcDetectedParam+4, strlen(trim(plcDetectedParam+4)));
             gtk_label_set_text(GTK_LABEL(lblSmartStart), lcTempMainString);
-            if ( strstr((char*)lcTempMainString, "ACTIVE") )
+            if ( strstr((char*)lcTempMainString, "CONNECTED") )
             {
                 gtk_widget_set_name((lblSmartStart),     "ConnectionOK");     // green
             }
