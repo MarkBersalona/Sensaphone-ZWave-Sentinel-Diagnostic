@@ -73,6 +73,8 @@ guint16 uiStatusTimestampCountdownTable[TIMESTAMP_DELAY_TABLE_COUNT] =
 {
     5, 6, 6, 7, 8, 10, 13, 18, 28, 39, 60, 120, 240
 };
+// Timestamp string buffer, typically "2026.10.15 10:22"
+char gcTimestamp[20];
 
 // Logfile
 GIOChannel *gioChannelLogfile;
@@ -733,13 +735,22 @@ main_parse_msg(char *paucReceiveMsg)
     }
     
     // Look for the periodic input zone readouts
-    plcDetected = strstr((char*)paucReceiveMsg, "InputTask: Zone ");
+    plcDetected = strstr((char*)paucReceiveMsg, "ZWaveTask: Zone=");
     if (plcDetected)
     {
         // Get the zone number
         memset(lcZoneNumberBuf, 0, sizeof(lcZoneNumberBuf));
         memcpy(lcZoneNumberBuf, plcDetected+16, 2);
         lucZoneNumber = atoi(trim(lcZoneNumberBuf));
+
+        // Get the timestamp string
+        char *plcTimestampDetected = strstr((char*)paucReceiveMsg, "Timestamp=");
+        if (plcTimestampDetected)
+        {
+            memset(gcTimestamp, 0, sizeof(gcTimestamp));
+            memcpy(gcTimestamp, plcTimestampDetected+10, 16);
+
+        }
 
         // Get the type number; look up the type name and save it
         char *plcTypeDetected = strstr((char*)paucReceiveMsg, "type=");
@@ -774,22 +785,27 @@ main_parse_msg(char *paucReceiveMsg)
         {
             case 1:
                 gtk_label_set_text(GTK_LABEL(lblTypeZone1),  trim(lcZoneTypeName));
+                gtk_label_set_text(GTK_LABEL(lblTimestampZone1),  trim(gcTimestamp));
                 gtk_label_set_text(GTK_LABEL(lblValueZone1), trim(lcTempMainString));
                 break;
             case 2:
                 gtk_label_set_text(GTK_LABEL(lblTypeZone2),  trim(lcZoneTypeName));
+                gtk_label_set_text(GTK_LABEL(lblTimestampZone2),  trim(gcTimestamp));
                 gtk_label_set_text(GTK_LABEL(lblValueZone2), trim(lcTempMainString));
                 break;
             case 3:
                 gtk_label_set_text(GTK_LABEL(lblTypeZone3),  trim(lcZoneTypeName));
+                gtk_label_set_text(GTK_LABEL(lblTimestampZone3),  trim(gcTimestamp));
                 gtk_label_set_text(GTK_LABEL(lblValueZone3), trim(lcTempMainString));
                 break;
             case 4:
                 gtk_label_set_text(GTK_LABEL(lblTypeZone4),  trim(lcZoneTypeName));
+                gtk_label_set_text(GTK_LABEL(lblTimestampZone4),  trim(gcTimestamp));
                 gtk_label_set_text(GTK_LABEL(lblValueZone4), trim(lcTempMainString));
                 break;
             case 5:
                 gtk_label_set_text(GTK_LABEL(lblTypeZone5),  trim(lcZoneTypeName));
+                gtk_label_set_text(GTK_LABEL(lblTimestampZone5),  trim(gcTimestamp));
                 gtk_label_set_text(GTK_LABEL(lblValueZone5), trim(lcTempMainString));
                 break;
             default:

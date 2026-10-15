@@ -31,6 +31,8 @@ extern GtkWidget *lblSmartStart, *lblBootstrap;
 
 extern GtkWidget *lblTypePower, *lblTypeBattery, *lblTypeLithium;
 extern GtkWidget *lblTypeZone1, *lblTypeZone2, *lblTypeZone3, *lblTypeZone4, *lblTypeZone5, *lblTypeRelay;
+extern GtkWidget *lblTimestampPower, *lblTimestampBattery, *lblTimestampLithium;
+extern GtkWidget *lblTimestampZone1, *lblTimestampZone2, *lblTimestampZone3, *lblTimestampZone4, *lblTimestampZone5, *lblTimestampRelay;
 extern GtkWidget *lblValuePower, *lblValueBattery, *lblValueLithium;
 extern GtkWidget *lblValueZone1, *lblValueZone2, *lblValueZone3, *lblValueZone4, *lblValueZone5, *lblValueRelay;
 extern GtkWidget *lblAlarmPower, *lblAlarmBattery, *lblAlarmLithium;
