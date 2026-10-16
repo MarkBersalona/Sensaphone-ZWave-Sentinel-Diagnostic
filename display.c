@@ -297,11 +297,6 @@ display_main_initialize(void)
     gtk_widget_set_name((lblZonePower),    "DiagnosticsFixed");
     gtk_widget_set_name((lblZoneBattery),  "DiagnosticsFixed");
     gtk_widget_set_name((lblZoneLithium),  "DiagnosticsFixed");
-    gtk_widget_set_name((lblZone1),        "DiagnosticsFixed");
-    gtk_widget_set_name((lblZone2),        "DiagnosticsFixed");
-    gtk_widget_set_name((lblZone3),        "DiagnosticsFixed");
-    gtk_widget_set_name((lblZone4),        "DiagnosticsFixed");
-    gtk_widget_set_name((lblZone5),        "DiagnosticsFixed");
     gtk_widget_set_name((lblZoneRelay),    "DiagnosticsFixed");
     gtk_widget_set_name((lblTypePower),    "DiagnosticsFixed");
     gtk_widget_set_name((lblTypeBattery),  "DiagnosticsFixed");
@@ -319,6 +314,12 @@ display_main_initialize(void)
     gtk_widget_set_name((lblSmartStart),     "DiagnosticValue");
     gtk_widget_set_name((lblBootstrap),      "DiagnosticValue");
     gtk_widget_set_name((lblLogfile),        "DiagnosticValue");
+
+    gtk_widget_set_name((lblZone1),          "DiagnosticValue");
+    gtk_widget_set_name((lblZone2),          "DiagnosticValue");
+    gtk_widget_set_name((lblZone3),          "DiagnosticValue");
+    gtk_widget_set_name((lblZone4),          "DiagnosticValue");
+    gtk_widget_set_name((lblZone5),          "DiagnosticValue");
 
     gtk_widget_set_name((lblTypeZone1),        "DiagnosticValue");
     gtk_widget_set_name((lblTypeZone2),        "DiagnosticValue");
@@ -410,6 +411,12 @@ void display_clear_UUT_values(void)
     gtk_label_set_text(GTK_LABEL(lblBootstrap),  "---------------");
     gtk_widget_set_name((lblBootstrap),     "DiagnosticValue");
 
+    gtk_label_set_text(GTK_LABEL(lblZone1), "---");
+    gtk_label_set_text(GTK_LABEL(lblZone2), "---");
+    gtk_label_set_text(GTK_LABEL(lblZone3), "---");
+    gtk_label_set_text(GTK_LABEL(lblZone4), "---");
+    gtk_label_set_text(GTK_LABEL(lblZone5), "---");
+    
     gtk_label_set_text(GTK_LABEL(lblTypeZone1), "------");
     gtk_label_set_text(GTK_LABEL(lblTypeZone2), "------");
     gtk_label_set_text(GTK_LABEL(lblTypeZone3), "------");

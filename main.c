@@ -127,6 +127,24 @@ static guint16 guiStickyErrorCountdown_sec = STICKY_ERROR_COUNT_PERIOD_SECONDS;
 ///////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////////////
+// Name:         Diagnostic_Beep
+// Description:  Generate a system beep
+//               Uses isspace() to determine what's a "space"
+//               By ChatGPT, 2026.10.16
+// Parameters:   None
+// Return:       None
+////////////////////////////////////////////////////////////////////////////
+void Diagnostic_Beep(void)
+{
+    GdkDisplay *display = gdk_display_get_default();
+    if (display != NULL)
+    {
+        gdk_display_beep(display);
+    }
+}
+// end Diagnostic_Beep
+
+////////////////////////////////////////////////////////////////////////////
 // Name:         is_valid_mac
 // Description:  Validate a given string is a MAC address
 //               Expects format xx-xx-xx-xx-xx-xx
@@ -198,7 +216,6 @@ char* trim(char* paucInputString)
 
 
 
-
 ///////////////////////////////////////////////////////////////////////////////
 //
 // Callbacks
@@ -219,6 +236,7 @@ void main_BOARDREV_clicked(void)
     guint16 luiBoardRevLength;
 
     display_status_write("Board rev button pressed\r\n");
+    Diagnostic_Beep();
 
     luiBoardRevLength = gtk_entry_get_text_length(GTK_ENTRY(txtentNewBoardRev));
     //sprintf(lcTempMainString, "luiBoardRevLength length = %d chars\r\n", luiBoardRevLength);
@@ -258,6 +276,7 @@ void main_BOARDREV_clicked(void)
 ////////////////////////////////////////////////////////////////////////////
 void main_LOGENABLE_state_set(void)
 {
+    Diagnostic_Beep();
     lfIsLogfileEnabled = gtk_switch_get_active(GTK_SWITCH(swLogfileEnable));
     if (lfIsLogfileEnabled)
     {
@@ -307,6 +326,7 @@ void main_MAC_clicked(void)
     guint16 luiMACAddressLength;
 
     display_status_write("MAC button pressed\r\n");
+    Diagnostic_Beep();
 
     luiMACAddressLength = gtk_entry_get_text_length(GTK_ENTRY(txtentNewMAC));
     //sprintf(lcTempMainString, "luiMACAddressLength length = %d chars\r\n", luiMACAddressLength);
@@ -346,6 +366,8 @@ void main_MAC_clicked(void)
 ////////////////////////////////////////////////////////////////////////////
 void main_MENU_clicked(void)
 {
+    Diagnostic_Beep();
+
     gint liMenuItemSelected = gtk_combo_box_get_active(GTK_COMBO_BOX(cbtMenu));
     if (-1 ==liMenuItemSelected)
     {
@@ -384,6 +406,7 @@ void main_MENU_clicked(void)
 ////////////////////////////////////////////////////////////////////////////
 void main_REBOOT_clicked(void)
 {
+    Diagnostic_Beep();
     //display_status_write("REBOOT button pressed\r\n");
     // Send the formatted menu command to the ZWave Sentinel
     sprintf(lcTempMainString, "+++MENU:Z");
@@ -402,6 +425,7 @@ void main_REBOOT_clicked(void)
 ////////////////////////////////////////////////////////////////////////////
 void main_RTD_clicked(void)
 {
+    Diagnostic_Beep();
     //display_status_write("RESET to Defaults button pressed\r\n");
     // Send the formatted menu command to the ZWave Sentinel
     sprintf(lcTempMainString, "+++MENU:X");
@@ -687,6 +711,7 @@ main_parse_msg(char *paucReceiveMsg)
     plcDetected = strstr((char*)paucReceiveMsg, "+++ Start DIAGNOSTIC MODE +++");
     if (plcDetected)
     {
+        Diagnostic_Beep();
         // Diagnostic mode is enabled on the ZWave Sentinel
         // Send a sacrificial dummy string to "initialize" serial_write()
         // and ZWave Sentinel Diagnostic receive
@@ -734,10 +759,19 @@ main_parse_msg(char *paucReceiveMsg)
         }
     }
     
+    ///////////////////////////////////////////////
+    //
     // Look for the periodic input zone readouts
+    //
+    ///////////////////////////////////////////////
     plcDetected = strstr((char*)paucReceiveMsg, "ZWaveTask: Zone=");
     if (plcDetected)
     {
+        Diagnostic_Beep();
+
+        //
+        // First, parse the input zone readout
+        //
         // Get the zone number
         memset(lcZoneNumberBuf, 0, sizeof(lcZoneNumberBuf));
         memcpy(lcZoneNumberBuf, plcDetected+16, 2);
@@ -780,39 +814,39 @@ main_parse_msg(char *paucReceiveMsg)
             memcpy(lcTempMainString, plcValueDetected+6, strlen(plcValueDetected+6));
         }
 
+        //
+        // Second, move the previous input zone data in the list,
+        // making way for the latest input zone data
+        //
+        // 5 gets 4
+        gtk_label_set_text(GTK_LABEL(lblZone5),  gtk_label_get_text(GTK_LABEL(lblZone4)));
+        gtk_label_set_text(GTK_LABEL(lblTypeZone5),  gtk_label_get_text(GTK_LABEL(lblTypeZone4)));
+        gtk_label_set_text(GTK_LABEL(lblTimestampZone5),  gtk_label_get_text(GTK_LABEL(lblTimestampZone4)));
+        gtk_label_set_text(GTK_LABEL(lblValueZone5), gtk_label_get_text(GTK_LABEL(lblValueZone4)));
+        // 4 gets 3
+        gtk_label_set_text(GTK_LABEL(lblZone4),  gtk_label_get_text(GTK_LABEL(lblZone3)));
+        gtk_label_set_text(GTK_LABEL(lblTypeZone4),  gtk_label_get_text(GTK_LABEL(lblTypeZone3)));
+        gtk_label_set_text(GTK_LABEL(lblTimestampZone4),  gtk_label_get_text(GTK_LABEL(lblTimestampZone3)));
+        gtk_label_set_text(GTK_LABEL(lblValueZone4), gtk_label_get_text(GTK_LABEL(lblValueZone3)));
+        // 3 gets 2
+        gtk_label_set_text(GTK_LABEL(lblZone3),  gtk_label_get_text(GTK_LABEL(lblZone2)));
+        gtk_label_set_text(GTK_LABEL(lblTypeZone3),  gtk_label_get_text(GTK_LABEL(lblTypeZone2)));
+        gtk_label_set_text(GTK_LABEL(lblTimestampZone3),  gtk_label_get_text(GTK_LABEL(lblTimestampZone2)));
+        gtk_label_set_text(GTK_LABEL(lblValueZone3), gtk_label_get_text(GTK_LABEL(lblValueZone2)));
+        // 2 gets 1
+        gtk_label_set_text(GTK_LABEL(lblZone2),  gtk_label_get_text(GTK_LABEL(lblZone1)));
+        gtk_label_set_text(GTK_LABEL(lblTypeZone2),  gtk_label_get_text(GTK_LABEL(lblTypeZone1)));
+        gtk_label_set_text(GTK_LABEL(lblTimestampZone2),  gtk_label_get_text(GTK_LABEL(lblTimestampZone1)));
+        gtk_label_set_text(GTK_LABEL(lblValueZone2), gtk_label_get_text(GTK_LABEL(lblValueZone1)));
+
+        //
+        // Write the latest input zone data
+        //
         // Write the zone type name and zone value to the appropriate zone labels
-        switch (lucZoneNumber)
-        {
-            case 1:
-                gtk_label_set_text(GTK_LABEL(lblTypeZone1),  trim(lcZoneTypeName));
-                gtk_label_set_text(GTK_LABEL(lblTimestampZone1),  trim(gcTimestamp));
-                gtk_label_set_text(GTK_LABEL(lblValueZone1), trim(lcTempMainString));
-                break;
-            case 2:
-                gtk_label_set_text(GTK_LABEL(lblTypeZone2),  trim(lcZoneTypeName));
-                gtk_label_set_text(GTK_LABEL(lblTimestampZone2),  trim(gcTimestamp));
-                gtk_label_set_text(GTK_LABEL(lblValueZone2), trim(lcTempMainString));
-                break;
-            case 3:
-                gtk_label_set_text(GTK_LABEL(lblTypeZone3),  trim(lcZoneTypeName));
-                gtk_label_set_text(GTK_LABEL(lblTimestampZone3),  trim(gcTimestamp));
-                gtk_label_set_text(GTK_LABEL(lblValueZone3), trim(lcTempMainString));
-                break;
-            case 4:
-                gtk_label_set_text(GTK_LABEL(lblTypeZone4),  trim(lcZoneTypeName));
-                gtk_label_set_text(GTK_LABEL(lblTimestampZone4),  trim(gcTimestamp));
-                gtk_label_set_text(GTK_LABEL(lblValueZone4), trim(lcTempMainString));
-                break;
-            case 5:
-                gtk_label_set_text(GTK_LABEL(lblTypeZone5),  trim(lcZoneTypeName));
-                gtk_label_set_text(GTK_LABEL(lblTimestampZone5),  trim(gcTimestamp));
-                gtk_label_set_text(GTK_LABEL(lblValueZone5), trim(lcTempMainString));
-                break;
-            default:
-                sprintf(lcTempMainString, "ERROR - bad zone number %d\r\n", lucZoneNumber);
-                display_status_write(lcTempMainString);
-                break;
-        }
+        gtk_label_set_text(GTK_LABEL(lblZone1),  trim(lcZoneNumberBuf));
+        gtk_label_set_text(GTK_LABEL(lblTypeZone1),  trim(lcZoneTypeName));
+        gtk_label_set_text(GTK_LABEL(lblTimestampZone1),  trim(gcTimestamp));
+        gtk_label_set_text(GTK_LABEL(lblValueZone1), trim(lcTempMainString));
     }
 
     // Look for "Relay has been turned ON"
