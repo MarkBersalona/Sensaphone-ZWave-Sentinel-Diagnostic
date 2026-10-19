@@ -134,8 +134,6 @@ char* pucMenuCMD[] =
     "Z", // REBOOT
 
     "-", // end of menu
- 
-    
 };
 
 char lcTempString[40];

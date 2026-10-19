@@ -782,7 +782,7 @@ main_parse_msg(char *paucReceiveMsg)
         if (plcTimestampDetected)
         {
             memset(gcTimestamp, 0, sizeof(gcTimestamp));
-            memcpy(gcTimestamp, plcTimestampDetected+10, 16);
+            memcpy(gcTimestamp, plcTimestampDetected+10, 19);
 
         }
 
@@ -1160,6 +1160,15 @@ main_parse_msg(char *paucReceiveMsg)
         memcpy (lcTempMainString, plcDetected+27, strlen(plcDetected+27));
         display_status_write(lcTempMainString);
         display_status_write("\r\n");
+    }
+    
+    // Look for "Request RTC sync"
+    plcDetected = strstr((char*)paucReceiveMsg, "Request RTC sync");
+    if (plcDetected)
+    {
+        // Send the formatted Sync RTC menu command to the ZWave Sentinel
+        sprintf(lcTempMainString, "+++MENU:%s %d", pucMenuCMD[MENU_ID_SYNC_RTC], gulUNIXTimestamp);
+        serial_write(lcTempMainString);
     }
     
 }

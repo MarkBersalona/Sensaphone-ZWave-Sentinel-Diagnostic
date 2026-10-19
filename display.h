@@ -55,6 +55,34 @@ extern GtkAdjustment *adjStatus;
 // Menu tables
 extern char* pucMenuItems[];
 extern char* pucMenuCMD[];
+typedef enum Menu_IDs
+{
+    MENU_ID_DISPLAY_MENU,
+    MENU_ID_ERASE_EXT_FLASH,
+    MENU_ID_APP_CRC,
+    MENU_ID_APP_TO_EXT_FLASH,
+    
+    MENU_ID_APP_FROM_EXT_FLASH,
+
+    MENU_ID_SPI_FLASH_TEST_BIG,
+    MENU_ID_SPI_FLASH_TEST_SMALL,
+    MENU_ID_ACK_ALL_ALARMS,
+    
+    MENU_ID_READ_MAC,
+    MENU_ID_READ_BOARD_REV,
+    MENU_ID_TOGGLE_LAMPS,
+    MENU_ID_TOGGLE_RELAY,
+    MENU_ID_DELETE_NODE,
+    
+    MENU_ID_PING_SERVER,
+    MENU_ID_SYNC_RTC,
+    MENU_ID_ZONE_UPDATE_POST,
+    MENU_ID_RESET_TO_DEFAULTS,
+    MENU_ID_REBOOT,
+    
+    MENU_ID_COUNT,
+    
+} MenuID;
 
 ///////////////////////////////////////////////////////////////////////////////
 //
