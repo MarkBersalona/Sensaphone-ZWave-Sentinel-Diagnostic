@@ -1,10 +1,10 @@
 # Sensaphone ZWave Sentinel Diagnostic tool
 
-<img src="20261016_ZWave_Sentinel_Diagnostic.png" alt="Sensaphone ZWave Sentinel Diagnostic screenshot, 2023.03.14" />
+<img src="20261023_ZWave_Sentinel_Diagnostic.png" alt="Sensaphone ZWave Sentinel Diagnostic screenshot, 2026.10.23" />
 
 This is the Diagnostic tool for the **Sensaphone ZWave Sentinel**
 
-- Runs in a Debian-based Linux distribution, like Linux Mint. I've also got it running in Fedora. (It can probably run in an Arch- or other non-Debian Linux distro, I simply haven't tried building it in one yet.)
+- Runs in a Debian-based Linux distribution, like Linux Mint. I've also got it running in Fedora and CachyOS (based on Arch). (It can probably run in other non-Debian Linux distros, with the proper setup.)
 - Connects to the serial debug port of the 400 Cellular via serial-to-USB converter; expects 
 connection to the ttyUSB0 device
 - Works best on a 1920x1080 or larger display
@@ -33,6 +33,14 @@ In my copy of Fedora, gcc wasn't installed! But to get it installed, I simply ty
 gcc
 ```
 
+### CachyOS (Arch)
+
+CachyOS had the GTK 3 library already installed. But for other Arch-based distos which might not have GTK 3 already installed:
+
+```
+sudo pacman -Syu gtk3
+```
+
 
 ## Build instructions
 1. Clone Sensaphone-ZWave-Sentinel-Diagnostic. If you're reading this, you're already likely in my 
@@ -51,15 +59,23 @@ laptop I cloned it to /home/mark/GTKProjects/Sensaphone-ZWave-Sentinel-Diagnosti
 First, **verify the USB-to-serial cable is plugged into a USB port**. (I know, obvious, but I forgot to plug it in while testing these instructions.)
 
 In some instances the tool might not immediately recognize ttyUSB0, the Linux device for a USB-to-serial converter, or allow non-root access to it. See https://askubuntu.com/questions/133235/how-do-i-allow-non-root-access-to-ttyusb0 for a detailed explanation, but what's worked for me is the following:
-1. Confirm ttyUSB0 is in the user group 'dialout'
+
+1. Confirm ttyUSB0 is in the user group 'dialout'; in an Arch-based distro the equivalent to `dialout` is `uucp`
+
 ```
 stat /dev/ttyUSB0
 ```
+
 2. Add the user to the dialout group using the following command
 ```
 sudo usermod -a -G dialout $USER
 ```
-3. Logout and log back into the account. The tool should recognize ttyUSB0 and work correctly.
+- In an Arch-based distro
+```
+sudo usermod -a -G uucp $USER
+```
+
+3. Logout and log back into the account. Better yet, reboot. The tool should recognize ttyUSB0 and work correctly.
 4. (Optional) Verify the user is included in the dialout group. The following command lists the groups to which the user belongs
 ```
 sudo groups $USER

@@ -798,10 +798,12 @@ main_parse_msg(char *paucReceiveMsg)
             {
                 case  0: sprintf(lcZoneTypeName, "Normally Open");                   break;
                 case  1: sprintf(lcZoneTypeName, "Normally Closed");                 break;
-                case  2: sprintf(lcZoneTypeName, "Temp 2.8K F");                     break;
-                case  3: sprintf(lcZoneTypeName, "Temp 2.8K C");                     break;
+                case  2: sprintf(lcZoneTypeName, "Temperature F");                   break;
+                case  3: sprintf(lcZoneTypeName, "Temperature C");                   break;
+                case 10: sprintf(lcZoneTypeName, "Humidity");                        break;
                 case 29: sprintf(lcZoneTypeName, "Runtime NO");                      break;
                 case 30: sprintf(lcZoneTypeName, "Runtime NC");                      break;
+                case 36: sprintf(lcZoneTypeName, "Analog output");                   break;
                 default: sprintf(lcZoneTypeName, "Unexpected type=%d", lucZoneType); break;
             }
         }
