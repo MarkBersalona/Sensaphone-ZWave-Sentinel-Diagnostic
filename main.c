@@ -801,6 +801,7 @@ main_parse_msg(char *paucReceiveMsg)
                 case  2: sprintf(lcZoneTypeName, "Temperature F");                   break;
                 case  3: sprintf(lcZoneTypeName, "Temperature C");                   break;
                 case 10: sprintf(lcZoneTypeName, "Humidity");                        break;
+                case 12: sprintf(lcZoneTypeName, "Battery");                         break;
                 case 29: sprintf(lcZoneTypeName, "Runtime NO");                      break;
                 case 30: sprintf(lcZoneTypeName, "Runtime NC");                      break;
                 case 36: sprintf(lcZoneTypeName, "Analog output");                   break;
