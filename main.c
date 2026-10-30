@@ -473,6 +473,10 @@ main_parse_msg(char *paucReceiveMsg)
     int liZoneValue;
     char lcZoneTypeName[20];
 
+    // For timestamps
+    guint32 lulTimestamp;
+    char lcTimestamp[20];
+
     // For zone alarm statuses
     char lcZoneAlarmBuf[4];
     uint8_t lucZoneAlarm;
@@ -624,16 +628,6 @@ main_parse_msg(char *paucReceiveMsg)
         }
     }
     
-    // Look for "+++ Start DIAGNOSTIC MODE +++"
-    plcDetected = strstr((char*)paucReceiveMsg, "+++ Start DIAGNOSTIC MODE +++");
-    if (plcDetected)
-    {
-        // Diagnostic mode is enabled on the ZWave Sentinel
-        // Send a sacrificial dummy string to "initialize" serial_write()
-        // and ZWave Sentinel Diagnostic receive
-        serial_write("+++");
-    }
-    
     // Look for "ZWave_SmartStart_StateMachine: Transitioning "
     plcDetected = strstr((char*)paucReceiveMsg, "ZWave_SmartStart_StateMachine: Transitioning ");
     if (plcDetected)
@@ -774,16 +768,21 @@ main_parse_msg(char *paucReceiveMsg)
         //
         // Get the zone number
         memset(lcZoneNumberBuf, 0, sizeof(lcZoneNumberBuf));
-        memcpy(lcZoneNumberBuf, plcDetected+16, 2);
+        memcpy(lcZoneNumberBuf, plcDetected+16, 3);
         lucZoneNumber = atoi(trim(lcZoneNumberBuf));
+        memset(lcZoneNumberBuf, 0, sizeof(lcZoneNumberBuf));
+        sprintf(lcZoneNumberBuf, "%d", lucZoneNumber);
 
         // Get the timestamp string
         char *plcTimestampDetected = strstr((char*)paucReceiveMsg, "Timestamp=");
         if (plcTimestampDetected)
         {
             memset(gcTimestamp, 0, sizeof(gcTimestamp));
-            memcpy(gcTimestamp, plcTimestampDetected+10, 19);
-
+            //memcpy(gcTimestamp, plcTimestampDetected+10, 19); // for 2026.10.29 15:01:44
+            memcpy(gcTimestamp, plcTimestampDetected+10, 10); // for 1793304210
+            lulTimestamp = atoi(trim(gcTimestamp));
+            memset(gcTimestamp, 0, sizeof(gcTimestamp));
+            sprintf(gcTimestamp, "%s", g_date_time_format(g_date_time_new_from_unix_utc(lulTimestamp), "%Y.%m.%d %H:%M:%S"));
         }
 
         // Get the type number; look up the type name and save it
