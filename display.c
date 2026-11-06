@@ -50,15 +50,15 @@ GtkWidget *btnRTD, *btnReboot;
 GtkWidget *lblZoneTitle, *lblTypeTitle, *lblTimestampTitle, *lblValueTitle, *lblAlarmTitle;
 
 GtkWidget *lblZonePower, *lblZoneBattery, *lblZoneLithium;
-GtkWidget *lblZone1, *lblZone2, *lblZone3, *lblZone4, *lblZone5, *lblZoneRelay;
+GtkWidget *lblZone1, *lblZone2, *lblZone3, *lblZone4, *lblZone5, *lblZone6, *lblZone7, *lblZoneRelay;
 GtkWidget *lblTypePower, *lblTypeBattery, *lblTypeLithium;
-GtkWidget *lblTypeZone1, *lblTypeZone2, *lblTypeZone3, *lblTypeZone4, *lblTypeZone5, *lblTypeRelay;
+GtkWidget *lblTypeZone1, *lblTypeZone2, *lblTypeZone3, *lblTypeZone4, *lblTypeZone5, *lblTypeZone6, *lblTypeZone7, *lblTypeRelay;
 GtkWidget *lblTimestampPower, *lblTimestampBattery, *lblTimestampLithium;
-GtkWidget *lblTimestampZone1, *lblTimestampZone2, *lblTimestampZone3, *lblTimestampZone4, *lblTimestampZone5, *lblTimestampRelay;
+GtkWidget *lblTimestampZone1, *lblTimestampZone2, *lblTimestampZone3, *lblTimestampZone4, *lblTimestampZone5, *lblTimestampZone6, *lblTimestampZone7, *lblTimestampRelay;
 GtkWidget *lblValuePower, *lblValueBattery, *lblValueLithium;
-GtkWidget *lblValueZone1, *lblValueZone2, *lblValueZone3, *lblValueZone4, *lblValueZone5, *lblValueRelay;
+GtkWidget *lblValueZone1, *lblValueZone2, *lblValueZone3, *lblValueZone4, *lblValueZone5, *lblValueZone6, *lblValueZone7, *lblValueRelay;
 GtkWidget *lblAlarmPower, *lblAlarmBattery, *lblAlarmLithium;
-GtkWidget *lblAlarmZone1, *lblAlarmZone2, *lblAlarmZone3, *lblAlarmZone4, *lblAlarmZone5, *lblAlarmRelay;
+GtkWidget *lblAlarmZone1, *lblAlarmZone2, *lblAlarmZone3, *lblAlarmZone4, *lblAlarmZone5, *lblAlarmZone6, *lblAlarmZone7, *lblAlarmRelay;
 
 GtkWidget *lblStatusTitle, *textviewStatus;
 GtkWidget *lblReceiveTitle, *lblLogfileTitle, *swLogfileEnable, *lblLogfile;
@@ -199,6 +199,8 @@ display_main_initialize(void)
     lblZone3        = GTK_WIDGET(gtk_builder_get_object(builder, "lblZone3"));
     lblZone4        = GTK_WIDGET(gtk_builder_get_object(builder, "lblZone4"));
     lblZone5        = GTK_WIDGET(gtk_builder_get_object(builder, "lblZone5"));
+    lblZone6        = GTK_WIDGET(gtk_builder_get_object(builder, "lblZone6"));
+    lblZone7        = GTK_WIDGET(gtk_builder_get_object(builder, "lblZone7"));
     lblZoneRelay    = GTK_WIDGET(gtk_builder_get_object(builder, "lblZoneRelay"));
 
     lblTypePower    = GTK_WIDGET(gtk_builder_get_object(builder, "lblTypePower"));
@@ -209,6 +211,8 @@ display_main_initialize(void)
     lblTypeZone3    = GTK_WIDGET(gtk_builder_get_object(builder, "lblTypeZone3"));
     lblTypeZone4    = GTK_WIDGET(gtk_builder_get_object(builder, "lblTypeZone4"));
     lblTypeZone5    = GTK_WIDGET(gtk_builder_get_object(builder, "lblTypeZone5"));
+    lblTypeZone6    = GTK_WIDGET(gtk_builder_get_object(builder, "lblTypeZone6"));
+    lblTypeZone7    = GTK_WIDGET(gtk_builder_get_object(builder, "lblTypeZone7"));
     lblTypeRelay    = GTK_WIDGET(gtk_builder_get_object(builder, "lblTypeRelay"));
 
     lblTimestampPower    = GTK_WIDGET(gtk_builder_get_object(builder, "lblTimestampPower"));
@@ -219,6 +223,8 @@ display_main_initialize(void)
     lblTimestampZone3    = GTK_WIDGET(gtk_builder_get_object(builder, "lblTimestampZone3"));
     lblTimestampZone4    = GTK_WIDGET(gtk_builder_get_object(builder, "lblTimestampZone4"));
     lblTimestampZone5    = GTK_WIDGET(gtk_builder_get_object(builder, "lblTimestampZone5"));
+    lblTimestampZone6    = GTK_WIDGET(gtk_builder_get_object(builder, "lblTimestampZone6"));
+    lblTimestampZone7    = GTK_WIDGET(gtk_builder_get_object(builder, "lblTimestampZone7"));
     lblTimestampRelay    = GTK_WIDGET(gtk_builder_get_object(builder, "lblTimestampRelay"));
 
     lblValuePower    = GTK_WIDGET(gtk_builder_get_object(builder, "lblValuePower"));
@@ -229,6 +235,8 @@ display_main_initialize(void)
     lblValueZone3    = GTK_WIDGET(gtk_builder_get_object(builder, "lblValueZone3"));
     lblValueZone4    = GTK_WIDGET(gtk_builder_get_object(builder, "lblValueZone4"));
     lblValueZone5    = GTK_WIDGET(gtk_builder_get_object(builder, "lblValueZone5"));
+    lblValueZone6    = GTK_WIDGET(gtk_builder_get_object(builder, "lblValueZone6"));
+    lblValueZone7    = GTK_WIDGET(gtk_builder_get_object(builder, "lblValueZone7"));
     lblValueRelay    = GTK_WIDGET(gtk_builder_get_object(builder, "lblValueRelay"));
 
     lblAlarmPower    = GTK_WIDGET(gtk_builder_get_object(builder, "lblAlarmPower"));
@@ -239,6 +247,8 @@ display_main_initialize(void)
     lblAlarmZone3    = GTK_WIDGET(gtk_builder_get_object(builder, "lblAlarmZone3"));
     lblAlarmZone4    = GTK_WIDGET(gtk_builder_get_object(builder, "lblAlarmZone4"));
     lblAlarmZone5    = GTK_WIDGET(gtk_builder_get_object(builder, "lblAlarmZone5"));
+    lblAlarmZone6    = GTK_WIDGET(gtk_builder_get_object(builder, "lblAlarmZone6"));
+    lblAlarmZone7    = GTK_WIDGET(gtk_builder_get_object(builder, "lblAlarmZone7"));
     lblAlarmRelay    = GTK_WIDGET(gtk_builder_get_object(builder, "lblAlarmRelay"));
 
     lblStatusTitle  = GTK_WIDGET(gtk_builder_get_object(builder, "lblStatusTitle"));
@@ -318,12 +328,16 @@ display_main_initialize(void)
     gtk_widget_set_name((lblZone3),          "DiagnosticValue");
     gtk_widget_set_name((lblZone4),          "DiagnosticValue");
     gtk_widget_set_name((lblZone5),          "DiagnosticValue");
+    gtk_widget_set_name((lblZone6),          "DiagnosticValue");
+    gtk_widget_set_name((lblZone7),          "DiagnosticValue");
 
     gtk_widget_set_name((lblTypeZone1),        "DiagnosticValue");
     gtk_widget_set_name((lblTypeZone2),        "DiagnosticValue");
     gtk_widget_set_name((lblTypeZone3),        "DiagnosticValue");
     gtk_widget_set_name((lblTypeZone4),        "DiagnosticValue");
     gtk_widget_set_name((lblTypeZone5),        "DiagnosticValue");
+    gtk_widget_set_name((lblTypeZone6),        "DiagnosticValue");
+    gtk_widget_set_name((lblTypeZone7),        "DiagnosticValue");
 
     gtk_widget_set_name((lblTimestampPower),        "DiagnosticValue");
     gtk_widget_set_name((lblTimestampBattery),      "DiagnosticValue");
@@ -333,6 +347,8 @@ display_main_initialize(void)
     gtk_widget_set_name((lblTimestampZone3),        "DiagnosticValue");
     gtk_widget_set_name((lblTimestampZone4),        "DiagnosticValue");
     gtk_widget_set_name((lblTimestampZone5),        "DiagnosticValue");
+    gtk_widget_set_name((lblTimestampZone6),        "DiagnosticValue");
+    gtk_widget_set_name((lblTimestampZone7),        "DiagnosticValue");
     gtk_widget_set_name((lblTimestampRelay),        "DiagnosticValue");
 
     gtk_widget_set_name((lblValuePower),        "DiagnosticValue");
@@ -343,6 +359,8 @@ display_main_initialize(void)
     gtk_widget_set_name((lblValueZone3),        "DiagnosticValue");
     gtk_widget_set_name((lblValueZone4),        "DiagnosticValue");
     gtk_widget_set_name((lblValueZone5),        "DiagnosticValue");
+    gtk_widget_set_name((lblValueZone6),        "DiagnosticValue");
+    gtk_widget_set_name((lblValueZone7),        "DiagnosticValue");
     gtk_widget_set_name((lblValueRelay),        "DiagnosticValue");
 
     gtk_widget_set_name((lblAlarmPower),        "DiagnosticValue");
@@ -353,6 +371,8 @@ display_main_initialize(void)
     gtk_widget_set_name((lblAlarmZone3),        "DiagnosticValue");
     gtk_widget_set_name((lblAlarmZone4),        "DiagnosticValue");
     gtk_widget_set_name((lblAlarmZone5),        "DiagnosticValue");
+    gtk_widget_set_name((lblAlarmZone6),        "DiagnosticValue");
+    gtk_widget_set_name((lblAlarmZone7),        "DiagnosticValue");
     gtk_widget_set_name((lblAlarmRelay),        "DiagnosticValue");
 
     // Buttons
@@ -414,12 +434,16 @@ void display_clear_UUT_values(void)
     gtk_label_set_text(GTK_LABEL(lblZone3), "---");
     gtk_label_set_text(GTK_LABEL(lblZone4), "---");
     gtk_label_set_text(GTK_LABEL(lblZone5), "---");
+    gtk_label_set_text(GTK_LABEL(lblZone6), "---");
+    gtk_label_set_text(GTK_LABEL(lblZone7), "---");
     
     gtk_label_set_text(GTK_LABEL(lblTypeZone1), "------");
     gtk_label_set_text(GTK_LABEL(lblTypeZone2), "------");
     gtk_label_set_text(GTK_LABEL(lblTypeZone3), "------");
     gtk_label_set_text(GTK_LABEL(lblTypeZone4), "------");
     gtk_label_set_text(GTK_LABEL(lblTypeZone5), "------");
+    gtk_label_set_text(GTK_LABEL(lblTypeZone6), "------");
+    gtk_label_set_text(GTK_LABEL(lblTypeZone7), "------");
     
     gtk_label_set_text(GTK_LABEL(lblTimestampPower), "------");
     gtk_label_set_text(GTK_LABEL(lblTimestampBattery), "------");
@@ -429,6 +453,8 @@ void display_clear_UUT_values(void)
     gtk_label_set_text(GTK_LABEL(lblTimestampZone3), "------");
     gtk_label_set_text(GTK_LABEL(lblTimestampZone4), "------");
     gtk_label_set_text(GTK_LABEL(lblTimestampZone5), "------");
+    gtk_label_set_text(GTK_LABEL(lblTimestampZone6), "------");
+    gtk_label_set_text(GTK_LABEL(lblTimestampZone7), "------");
     gtk_label_set_text(GTK_LABEL(lblTimestampRelay), "------");
     
     gtk_label_set_text(GTK_LABEL(lblValuePower), "------");
@@ -439,6 +465,8 @@ void display_clear_UUT_values(void)
     gtk_label_set_text(GTK_LABEL(lblValueZone3), "------");
     gtk_label_set_text(GTK_LABEL(lblValueZone4), "------");
     gtk_label_set_text(GTK_LABEL(lblValueZone5), "------");
+    gtk_label_set_text(GTK_LABEL(lblValueZone6), "------");
+    gtk_label_set_text(GTK_LABEL(lblValueZone7), "------");
     gtk_label_set_text(GTK_LABEL(lblValueRelay), "------");
     
     gtk_label_set_text(GTK_LABEL(lblAlarmPower), "------");
@@ -449,6 +477,8 @@ void display_clear_UUT_values(void)
     gtk_label_set_text(GTK_LABEL(lblAlarmZone3), "------");
     gtk_label_set_text(GTK_LABEL(lblAlarmZone4), "------");
     gtk_label_set_text(GTK_LABEL(lblAlarmZone5), "------");
+    gtk_label_set_text(GTK_LABEL(lblAlarmZone6), "------");
+    gtk_label_set_text(GTK_LABEL(lblAlarmZone7), "------");
     gtk_label_set_text(GTK_LABEL(lblAlarmRelay), "------");
     gtk_widget_set_name((lblAlarmPower),        "DiagnosticValue");
     gtk_widget_set_name((lblAlarmBattery),      "DiagnosticValue");
@@ -458,6 +488,8 @@ void display_clear_UUT_values(void)
     gtk_widget_set_name((lblAlarmZone3),        "DiagnosticValue");
     gtk_widget_set_name((lblAlarmZone4),        "DiagnosticValue");
     gtk_widget_set_name((lblAlarmZone5),        "DiagnosticValue");
+    gtk_widget_set_name((lblAlarmZone6),        "DiagnosticValue");
+    gtk_widget_set_name((lblAlarmZone7),        "DiagnosticValue");
     gtk_widget_set_name((lblAlarmRelay),        "DiagnosticValue");
     
     

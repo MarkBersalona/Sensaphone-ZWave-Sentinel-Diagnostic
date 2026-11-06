@@ -29,15 +29,15 @@ extern GtkWidget *lblRTC, *lblConnection;
 extern GtkWidget *lblZWaveNodes, *lblZWaveLiveNodes;
 extern GtkWidget *lblSmartStart, *lblBootstrap;
 
-extern GtkWidget *lblZone1, *lblZone2, *lblZone3, *lblZone4, *lblZone5;
+extern GtkWidget *lblZone1, *lblZone2, *lblZone3, *lblZone4, *lblZone5, *lblZone6, *lblZone7;
 extern GtkWidget *lblTypePower, *lblTypeBattery, *lblTypeLithium;
-extern GtkWidget *lblTypeZone1, *lblTypeZone2, *lblTypeZone3, *lblTypeZone4, *lblTypeZone5, *lblTypeRelay;
+extern GtkWidget *lblTypeZone1, *lblTypeZone2, *lblTypeZone3, *lblTypeZone4, *lblTypeZone5, *lblTypeZone6, *lblTypeZone7, *lblTypeRelay;
 extern GtkWidget *lblTimestampPower, *lblTimestampBattery, *lblTimestampLithium;
-extern GtkWidget *lblTimestampZone1, *lblTimestampZone2, *lblTimestampZone3, *lblTimestampZone4, *lblTimestampZone5, *lblTimestampRelay;
+extern GtkWidget *lblTimestampZone1, *lblTimestampZone2, *lblTimestampZone3, *lblTimestampZone4, *lblTimestampZone5, *lblTimestampZone6, *lblTimestampZone7, *lblTimestampRelay;
 extern GtkWidget *lblValuePower, *lblValueBattery, *lblValueLithium;
-extern GtkWidget *lblValueZone1, *lblValueZone2, *lblValueZone3, *lblValueZone4, *lblValueZone5, *lblValueRelay;
+extern GtkWidget *lblValueZone1, *lblValueZone2, *lblValueZone3, *lblValueZone4, *lblValueZone5, *lblValueZone6, *lblValueZone7, *lblValueRelay;
 extern GtkWidget *lblAlarmPower, *lblAlarmBattery, *lblAlarmLithium;
-extern GtkWidget *lblAlarmZone1, *lblAlarmZone2, *lblAlarmZone3, *lblAlarmZone4, *lblAlarmZone5, *lblAlarmRelay;
+extern GtkWidget *lblAlarmZone1, *lblAlarmZone2, *lblAlarmZone3, *lblAlarmZone4, *lblAlarmZone5, *lblAlarmZone6, *lblAlarmZone7, *lblAlarmRelay;
 
 extern GtkWidget *lblLogfile;
 

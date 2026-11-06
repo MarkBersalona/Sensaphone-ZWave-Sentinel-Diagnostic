@@ -820,6 +820,16 @@ main_parse_msg(char *paucReceiveMsg)
         // Second, move the previous input zone data in the list,
         // making way for the latest input zone data
         //
+        // 7 gets 6
+        gtk_label_set_text(GTK_LABEL(lblZone7),  gtk_label_get_text(GTK_LABEL(lblZone6)));
+        gtk_label_set_text(GTK_LABEL(lblTypeZone7),  gtk_label_get_text(GTK_LABEL(lblTypeZone6)));
+        gtk_label_set_text(GTK_LABEL(lblTimestampZone7),  gtk_label_get_text(GTK_LABEL(lblTimestampZone6)));
+        gtk_label_set_text(GTK_LABEL(lblValueZone7), gtk_label_get_text(GTK_LABEL(lblValueZone6)));
+        // 6 gets 5
+        gtk_label_set_text(GTK_LABEL(lblZone6),  gtk_label_get_text(GTK_LABEL(lblZone5)));
+        gtk_label_set_text(GTK_LABEL(lblTypeZone6),  gtk_label_get_text(GTK_LABEL(lblTypeZone5)));
+        gtk_label_set_text(GTK_LABEL(lblTimestampZone6),  gtk_label_get_text(GTK_LABEL(lblTimestampZone5)));
+        gtk_label_set_text(GTK_LABEL(lblValueZone6), gtk_label_get_text(GTK_LABEL(lblValueZone5)));
         // 5 gets 4
         gtk_label_set_text(GTK_LABEL(lblZone5),  gtk_label_get_text(GTK_LABEL(lblZone4)));
         gtk_label_set_text(GTK_LABEL(lblTypeZone5),  gtk_label_get_text(GTK_LABEL(lblTypeZone4)));
