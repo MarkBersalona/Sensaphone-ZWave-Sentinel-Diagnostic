@@ -60,3 +60,5 @@ zwave_sentinel_diagnostic
 *.glade~
 
 *.txt
+
+dist/Debug/GNU-Linux/
