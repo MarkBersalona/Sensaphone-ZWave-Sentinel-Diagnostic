@@ -758,7 +758,7 @@ main_parse_msg(char *paucReceiveMsg)
     // Look for the periodic input zone readouts
     //
     ///////////////////////////////////////////////
-    plcDetected = strstr((char*)paucReceiveMsg, "ZWaveTask: Zone=");
+    plcDetected = strstr((char*)paucReceiveMsg, "Zone=");
     if (plcDetected)
     {
         Diagnostic_Beep();
@@ -768,7 +768,7 @@ main_parse_msg(char *paucReceiveMsg)
         //
         // Get the zone number
         memset(lcZoneNumberBuf, 0, sizeof(lcZoneNumberBuf));
-        memcpy(lcZoneNumberBuf, plcDetected+16, 3);
+        memcpy(lcZoneNumberBuf, plcDetected+5, 3);
         lucZoneNumber = atoi(trim(lcZoneNumberBuf));
         memset(lcZoneNumberBuf, 0, sizeof(lcZoneNumberBuf));
         sprintf(lcZoneNumberBuf, "%d", lucZoneNumber);
